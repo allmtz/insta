@@ -19,7 +19,7 @@ export const AddPost = () => {
           <div className="flex items-center gap-2">
             <Image
               src={mockUserState.profilePicSrc}
-              className="PROFILE-PIC rounded-full h-10 w-10 object-cover object-top"
+              className="PROFILE-PIC h-10 w-10 rounded-full object-cover object-top"
               height={64}
               width={64}
               alt=""
@@ -27,7 +27,7 @@ export const AddPost = () => {
             <p className="font-semibold">{mockUserState.name}</p>
           </div>
           <input
-            className="min-w-full min-h-[200px] outline-none"
+            className="min-h-[200px] min-w-full outline-none"
             type="text"
             placeholder="Write a caption..."
           />

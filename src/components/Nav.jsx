@@ -19,7 +19,7 @@ export const Nav = () => {
 
   return (
     <>
-      <nav className="flex gap-4 flex-col border p-2">
+      <nav className="flex flex-col gap-4 border p-2">
         <h1>Instaclone</h1>
         <ul>
           <li className="flex gap-2" onClick={onAddPostClick}>

@@ -15,11 +15,11 @@ export const Feed = () => {
     <>
       <div className="POSTS-LAYOUT m-auto h-fit w-fit pt-8">
         <div className="POSTS">
-          <div className="POST flex flex-col gap-2 max-w-fit">
+          <div className="POST flex max-w-fit flex-col gap-2">
             <header className="POST-HEADER flex justify-between gap-4">
               <div className="flex gap-2 ">
                 <Image
-                  className="PROFILE-PIC rounded-full h-10 w-10 object-cover object-top"
+                  className="PROFILE-PIC h-10 w-10 rounded-full object-cover object-top"
                   height={64}
                   width={64}
                   src={profilePic}
