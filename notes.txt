@@ -1,0 +1,29 @@
+FOR A SINGLE POST
+need: A user object or acess to users to display post information
+    - username, location?, time posted
+    - preliminary POST format : {
+        user:obj,
+        currentUserId:str|num,
+        id,
+        timeStamp:str,
+        location?:str?,
+        likes:num,
+        comments:arr,
+        commentCount:num
+        isBookmarked:bool
+    }
+
+Make a component for UserProfilePic?
+    - need to re-use this for the current user and for all users in `posts`
+
+if things freeze up, try commenting out the images being loaded from picsum.photos
+    - in Nav
+
+<Post /> structure
+    <div className="POST-HEADER"></div>
+    <img className="POST-PIC" src="" alt="" />
+    <div className="POST-INTERACTIONS"></div>
+    <div className="POST-COMMENTS"></div>
+
+FIX 
+    placeholder positioning for AddPost
