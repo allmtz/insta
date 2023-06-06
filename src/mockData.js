@@ -11,7 +11,7 @@ export const mockPostState = {
   likedBy: { userID: user },
   comments: { userID: comment },
   commentCount: 23,
-  isBookmarked: false,
+  // isBookmarked: false, keep this in `user` state ?
   caption:
     "Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit rerum laudantium dolore. Commodi temporibus saepe animi pariatur, libero culpa provident.",
 };
