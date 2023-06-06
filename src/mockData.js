@@ -1,3 +1,5 @@
+import profilePic from "./assets/profle.jpg";
+
 const user = {};
 const comment = { author: "", authorID: 0, likes: 2, timeStamp: "" };
 const post = {};
@@ -18,6 +20,7 @@ export const mockPostState = {
 
 export const mockUserState = {
   name: "machoman",
+  profilePicSrc: profilePic,
   postsLiked: { postID: post },
   postsBookmarked: { postID: post },
 };
