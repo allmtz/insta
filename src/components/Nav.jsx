@@ -5,24 +5,24 @@ import { AddPost } from "../components/AddPost";
 import { Modal } from "./Modal";
 
 export const Nav = () => {
-  const [modalIsOpen, setmodalIsOpen] = useState(false);
+  const [modalIsOpen, setModalIsOpen] = useState(false);
 
   const onAddPostClick = () => {
-    setmodalIsOpen(!modalIsOpen);
+    setModalIsOpen(!modalIsOpen);
   };
 
   const onModalClick = (e) => {
     if (e.target.classList.contains("MODAL")) {
-      setmodalIsOpen(!modalIsOpen);
+      setModalIsOpen(!modalIsOpen);
     } else return;
   };
 
   return (
     <>
       <nav className="flex flex-col gap-4 border p-2">
-        <h1>Instaclone</h1>
+        <h1 className="cursor-default">Instaclone</h1>
         <ul>
-          <li className="flex gap-2" onClick={onAddPostClick}>
+          <li className="flex cursor-pointer gap-2" onClick={onAddPostClick}>
             <Image src={addPost} height={20} width={20}></Image>
             <span>Create</span>
           </li>
@@ -31,7 +31,7 @@ export const Nav = () => {
 
       {modalIsOpen && (
         <Modal onClick={onModalClick}>
-          <AddPost />
+          <AddPost setModalIsOpen={setModalIsOpen} />
         </Modal>
       )}
     </>
