@@ -1,8 +1,16 @@
+import { StaticImageData } from "next/image";
+
+export type Author = {
+  handle: string;
+  profilePicSrc: StaticImageData;
+  uuid: string;
+};
+
 export type Post = {
   id: string;
-  timeStamp: string;
-  author: string;
-  content: string;
+  timestamp: string;
+  author: Author;
+  caption: string;
   imgSrc: string;
   location: string;
   likes: number;
