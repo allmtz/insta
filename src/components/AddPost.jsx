@@ -7,7 +7,8 @@ import { useDispatch } from "react-redux";
 import { addPost } from "../features/Post/postsSlice";
 import { useState } from "react";
 
-import tempSrc from "../assets/nature.jpg";
+import tempImgSrc from "../assets/nature.jpg";
+import tempProfilePicSrc from "../assets/profle.jpg";
 
 export const AddPost = ({ setModalIsOpen }) => {
   const dispatch = useDispatch();
@@ -24,7 +25,14 @@ export const AddPost = ({ setModalIsOpen }) => {
 
   const onShareClick = () => {
     if (caption.trim() && location.trim()) {
-      dispatch(addPost(mockUserState.name, caption, location, tempSrc));
+      dispatch(
+        addPost(
+          { name: mockUserState.name, profilePicSrc: tempProfilePicSrc },
+          caption,
+          location,
+          tempImgSrc
+        )
+      );
       setModalIsOpen(false);
     }
   };
