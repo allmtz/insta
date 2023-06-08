@@ -15,7 +15,12 @@ export const postsSlice = createSlice({
       reducer(state, action: PayloadAction<Post>) {
         state.push(action.payload);
       },
-      prepare(author, content, location, imgSrc) {
+      prepare(
+        author: string,
+        content: string,
+        location: string,
+        imgSrc: string
+      ) {
         return {
           payload: {
             id: nanoid(),
