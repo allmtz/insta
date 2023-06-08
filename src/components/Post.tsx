@@ -1,8 +1,6 @@
 import Image from "next/image";
 
-// import { mockPostState } from "../mockData";
-// import imgSrc from "../assets/nature.jpg";
-// import profilePic from "../assets/profle.jpg";
+import { Post as TPost } from "../tipos/types";
 
 import likeBtn from "../assets/icons/like.svg";
 import commentBtn from "../assets/icons/comment.svg";
@@ -12,7 +10,7 @@ import bookmark from "../assets/icons/bookmark.svg";
 const imageWidth = 320;
 const captionStyle = `max-w-[${String(imageWidth)}px] flex flex-col gap-1`;
 
-export const Post = ({ post }) => {
+export const Post = ({ post }: { post: TPost }) => {
   const {
     id,
     timestamp,
@@ -34,10 +32,11 @@ export const Post = ({ post }) => {
             height={64}
             width={64}
             src={author.profilePicSrc}
+            alt={author.handle}
           ></Image>
           <div className="flex flex-col justify-center">
             <p className="">
-              <span className="font-semibold">{author.name} </span>
+              <span className="font-semibold">{author.handle} </span>
               <span className="text-gray-500">•</span>{" "}
               <span className="text-gray-500">{timestamp} </span>
             </p>
@@ -45,30 +44,32 @@ export const Post = ({ post }) => {
           </div>
         </div>
 
-        <Image src={horizontalDots} width={25} height={10}></Image>
+        <Image src={horizontalDots} width={25} height={10} alt=""></Image>
       </header>
       <Image
         className="POST-PIC rounded-sm"
         src={imgSrc}
         height={300}
         width={imageWidth}
+        alt=""
       ></Image>
       <div className="POST-INTERACTIONS flex justify-between ">
         <div className="flex items-center gap-2 ">
-          <Image src={likeBtn} height={30} width={30}></Image>
-          <Image src={commentBtn} height={25} width={25}></Image>
+          <Image src={likeBtn} height={30} width={30} alt="like"></Image>
+          <Image src={commentBtn} height={25} width={25} alt="comment"></Image>
         </div>
         <Image
           className="justify-self-end"
           src={bookmark}
           height={25}
           width={25}
+          alt="bookmark"
         ></Image>
       </div>
       <div className={captionStyle}>
         <p className="font-semibold">{likes} likes</p>
         <p>
-          <span className="font-semibold">{author.name} </span> {caption}{" "}
+          <span className="font-semibold">{author.handle} </span> {caption}{" "}
         </p>
         <div>
           <p className="text-gray-500 "> View all {commentCount} comments</p>

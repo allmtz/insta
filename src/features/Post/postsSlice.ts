@@ -1,7 +1,7 @@
 import { createSlice, nanoid, PayloadAction } from "@reduxjs/toolkit";
 
 import type { RootState } from "../../app/store";
-import { Post } from "../../tipos/types";
+import { Author, Post } from "../../tipos/types";
 
 type PostsState = Post[];
 
@@ -16,20 +16,20 @@ export const postsSlice = createSlice({
         state.push(action.payload);
       },
       prepare(
-        author: string,
-        content: string,
+        author: Author,
+        caption: string,
         location: string,
         imgSrc: string
-      ) {
+      ): { payload: Post } {
         return {
           payload: {
             id: nanoid(),
-            timeStamp: new Date().toISOString(),
+            timestamp: new Date().toISOString(),
             author,
-            content,
+            caption,
             imgSrc,
             location,
-            likes: 0,
+            likes: 10,
             likedBy: {},
             comments: {},
             commentCount: 0,
