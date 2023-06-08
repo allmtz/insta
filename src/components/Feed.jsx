@@ -11,10 +11,8 @@ export const Feed = () => {
   ));
 
   return (
-    <>
-      <div className="POSTS-LAYOUT m-auto my-5 h-fit w-fit ">
-        <div className="POSTS flex flex-col gap-8">{postsDisplayed}</div>
-      </div>
-    </>
+    <div className="POSTS-LAYOUT m-auto my-5 flex h-fit w-fit flex-col gap-8 ">
+      {postsDisplayed}
+    </div>
   );
 };
