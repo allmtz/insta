@@ -1,6 +1,6 @@
 import { StaticImageData } from "next/image";
 
-export type Author = {
+export type User = {
   handle: string;
   profilePicSrc: StaticImageData;
   uuid: string;
@@ -9,7 +9,7 @@ export type Author = {
 export type Post = {
   id: string;
   timestamp: string;
-  author: Author;
+  author: User;
   caption: string;
   imgSrc: string;
   location: string;
