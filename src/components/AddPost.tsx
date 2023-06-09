@@ -19,10 +19,12 @@ export const AddPost = ({
   const dispatch = useDispatch();
   const user = useSelector(userSelector);
   const [caption, setCaption] = useState("");
+  const [captionLength, setCaptionLength] = useState(0);
   const [location, setLocation] = useState("");
 
   const onCaptionChange = (value: string) => {
     setCaption(value);
+    setCaptionLength(value.length);
   };
 
   const onLocationChange = (value: string) => {
@@ -67,11 +69,14 @@ export const AddPost = ({
             <p className="font-semibold">{user.handle}</p>
           </div>
           <textarea
-            className="mt-2 min-h-[200px] w-[300px] resize-none border-b-2 px-2 outline-none placeholder:text-gray-300"
+            className="mt-2 min-h-[200px] w-[300px] resize-none px-2 outline-none placeholder:text-gray-300"
             placeholder="Write a caption..."
             onChange={(e) => onCaptionChange(e.target.value)}
           />
-          <div className="flex items-center border-b-2 pb-2">
+          <p className="ml-auto border-b-2 pb-2 pr-2 text-right text-sm text-gray-300">
+            {captionLength}/2,200
+          </p>
+          <div className="flex items-center border-b-2 py-2">
             <input
               className="w-full pl-2 outline-none"
               id="location"
