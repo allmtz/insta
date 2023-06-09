@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import { postsSelector } from "../features/Post/postsSlice";
+import { postsSelector } from "../features/posts/postsSlice";
 import { Post } from "./Post";
 import { nanoid } from "@reduxjs/toolkit";
 

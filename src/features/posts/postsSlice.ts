@@ -1,7 +1,7 @@
 import { createSlice, nanoid, PayloadAction } from "@reduxjs/toolkit";
 
 import type { RootState } from "../../app/store";
-import { Author, Post } from "../../tipos/types";
+import { User, Post } from "../../tipos/types";
 
 type PostsState = Post[];
 
@@ -16,7 +16,7 @@ export const postsSlice = createSlice({
         state.push(action.payload);
       },
       prepare(
-        author: Author,
+        author: User,
         caption: string,
         location: string,
         imgSrc: string

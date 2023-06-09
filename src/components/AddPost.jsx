@@ -1,17 +1,17 @@
 import Image from "next/image";
-import { mockUserState } from "../mockData";
 import backArrow from "../assets/icons/back.svg";
 
 //redux
-import { useDispatch } from "react-redux";
-import { addPost } from "../features/Post/postsSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { addPost } from "../features/posts/postsSlice";
+import { userSelector } from "../features/user/userSlice";
 import { useState } from "react";
 
-import tempImgSrc from "../assets/nature.jpg";
-import tempProfilePicSrc from "../assets/profle.jpg";
+import tempPostPicSrc from "../assets/nature.jpg";
 
 export const AddPost = ({ setModalIsOpen }) => {
   const dispatch = useDispatch();
+  const user = useSelector(userSelector);
   const [caption, setCaption] = useState("");
   const [location, setLocation] = useState("");
 
@@ -25,14 +25,7 @@ export const AddPost = ({ setModalIsOpen }) => {
 
   const onShareClick = () => {
     if (caption.trim() && location.trim()) {
-      dispatch(
-        addPost(
-          { name: mockUserState.name, profilePicSrc: tempProfilePicSrc },
-          caption,
-          location,
-          tempImgSrc
-        )
-      );
+      dispatch(addPost(user, caption, location, tempPostPicSrc));
       setModalIsOpen(false);
     }
   };
@@ -63,13 +56,13 @@ export const AddPost = ({ setModalIsOpen }) => {
         <section className="POST-INFO">
           <div className="flex items-center gap-2 p-2 ">
             <Image
-              src={mockUserState.profilePicSrc}
+              src={user.profilePicSrc}
               className="PROFILE-PIC h-10 w-10 rounded-full object-cover object-top"
               height={64}
               width={64}
               alt=""
             ></Image>
-            <p className="font-semibold">{mockUserState.name}</p>
+            <p className="font-semibold">{user.handle}</p>
           </div>
           <textarea
             className="mt-2 min-h-[200px] min-w-full resize-none border-b-2 pl-2 outline-none placeholder:text-gray-300"
