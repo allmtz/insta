@@ -7,6 +7,8 @@ import commentBtn from "../assets/icons/comment.svg";
 import horizontalDots from "../assets/icons/hdots.svg";
 import bookmark from "../assets/icons/bookmark.svg";
 
+import { getTimeAgo } from "../helpers/getTimeAgo";
+
 const imageWidth = 320;
 const captionStyle = `max-w-[${String(imageWidth)}px] flex flex-col gap-1`;
 
@@ -38,7 +40,7 @@ export const Post = ({ post }: { post: TPost }) => {
             <p className="">
               <span className="font-semibold">{author.handle} </span>
               <span className="text-gray-500">•</span>{" "}
-              <span className="text-gray-500">{timestamp} </span>
+              <span className="text-gray-500">{getTimeAgo(timestamp)}</span>
             </p>
             <p className="text-xs">{location}</p>
           </div>
