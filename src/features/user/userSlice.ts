@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+import { RootState } from "../../store";
 import { User } from "../../tipos/types";
-// import type { RootState } from "../../app/store";
 
 import tempProfilePic from "../../assets/profle.jpg";
 
