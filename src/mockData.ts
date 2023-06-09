@@ -2,13 +2,18 @@ import profilePicSrc from "./assets/profle.jpg";
 import { Post } from "./tipos/types";
 
 const user = {};
-const comment = { author: "", authorID: 0, likes: 2, timeStamp: "" };
+const comment = {
+  author: "",
+  authorID: 0,
+  likes: 2,
+  timeStamp: "",
+};
 const post = {};
 
 export const mockPostState: Post = {
   author: { handle: "johnthedon", profilePicSrc, uuid: "1" },
   id: "og",
-  timestamp: "10m",
+  timestamp: "2023-06-09T04:00:00.977Z",
   location: "Oceanside, California",
   likes: 10,
   likedBy: { uuid: user },

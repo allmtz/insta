@@ -2,10 +2,12 @@ import { createSlice, nanoid, PayloadAction } from "@reduxjs/toolkit";
 
 import { RootState } from "../../store";
 import { User, Post } from "../../tipos/types";
+import { StaticImageData } from "next/image";
+import { mockPostState } from "../../mockData";
 
 type PostsState = Post[];
 
-const initialState: PostsState = [];
+const initialState: PostsState = [mockPostState];
 
 export const postsSlice = createSlice({
   name: "posts",
@@ -19,7 +21,7 @@ export const postsSlice = createSlice({
         author: User,
         caption: string,
         location: string,
-        imgSrc: string
+        imgSrc: string | StaticImageData
       ): { payload: Post } {
         return {
           payload: {

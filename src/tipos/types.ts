@@ -11,7 +11,7 @@ export type Post = {
   timestamp: string;
   author: User;
   caption: string;
-  imgSrc: string;
+  imgSrc: string | StaticImageData;
   location: string;
   likes: number;
   likedBy: object;
