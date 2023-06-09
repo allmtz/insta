@@ -5,21 +5,25 @@ import backArrow from "../assets/icons/back.svg";
 import { useDispatch, useSelector } from "react-redux";
 import { addPost } from "../features/posts/postsSlice";
 import { userSelector } from "../features/user/userSlice";
-import { useState } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 
 import tempPostPicSrc from "../assets/nature.jpg";
 
-export const AddPost = ({ setModalIsOpen }) => {
+export const AddPost = ({
+  setModalIsOpen,
+}: {
+  setModalIsOpen: Dispatch<SetStateAction<boolean>>;
+}) => {
   const dispatch = useDispatch();
   const user = useSelector(userSelector);
   const [caption, setCaption] = useState("");
   const [location, setLocation] = useState("");
 
-  const onCaptionChange = (value) => {
+  const onCaptionChange = (value: string) => {
     setCaption(value);
   };
 
-  const onLocationChange = (value) => {
+  const onLocationChange = (value: string) => {
     setLocation(value);
   };
 
@@ -34,6 +38,7 @@ export const AddPost = ({ setModalIsOpen }) => {
       <header className="flex items-center justify-between border-b-2 p-2">
         <Image
           src={backArrow}
+          alt="back"
           className="cursor-pointer"
           height={30}
           onClick={() => setModalIsOpen(false)}
@@ -66,7 +71,6 @@ export const AddPost = ({ setModalIsOpen }) => {
           </div>
           <textarea
             className="mt-2 min-h-[200px] min-w-full resize-none border-b-2 pl-2 outline-none placeholder:text-gray-300"
-            type="text"
             placeholder="Write a caption..."
             onChange={(e) => onCaptionChange(e.target.value)}
           />
