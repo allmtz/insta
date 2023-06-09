@@ -9,8 +9,12 @@ import bookmark from "../assets/icons/bookmark.svg";
 
 import { getTimeAgo } from "../helpers/getTimeAgo";
 
+import { ProfilePic } from "./ProfilePic";
+
 const imageWidth = 320;
-const captionStyle = `max-w-[${String(imageWidth)}px] flex flex-col gap-1`;
+const captionStyle = {
+  320: `max-w-[320px] flex flex-col gap-1`,
+};
 
 export const Post = ({ post }: { post: TPost }) => {
   const {
@@ -29,13 +33,7 @@ export const Post = ({ post }: { post: TPost }) => {
     <div className="POST flex max-w-fit flex-col gap-2 border-b pb-4">
       <header className="POST-HEADER flex justify-between gap-4">
         <div className="flex gap-2 ">
-          <Image
-            className="PROFILE-PIC h-10 w-10 rounded-full object-cover object-top"
-            height={64}
-            width={64}
-            src={author.profilePicSrc}
-            alt={author.handle}
-          ></Image>
+          <ProfilePic picSrc={author.profilePicSrc} />
           <div className="flex flex-col justify-center">
             <p className="">
               <span className="font-semibold">{author.handle} </span>
@@ -68,7 +66,7 @@ export const Post = ({ post }: { post: TPost }) => {
           alt="bookmark"
         ></Image>
       </div>
-      <div className={captionStyle}>
+      <div className={captionStyle[320]}>
         <p className="font-semibold">{likes} likes</p>
         <p>
           <span className="font-semibold">{author.handle} </span> {caption}{" "}
