@@ -6,7 +6,10 @@ import { nanoid } from "@reduxjs/toolkit";
 export const Feed = () => {
   const posts = useSelector(postsSelector);
 
-  const postsDisplayed = posts.map((post) => (
+  // order the posts newest to oldest
+  const sortedPosts = [...posts].reverse();
+
+  const postsDisplayed = sortedPosts.map((post) => (
     <Post post={post} key={nanoid()} />
   ));
 
