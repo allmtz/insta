@@ -1,22 +1,27 @@
 import profilePicSrc from "./assets/profle.jpg";
-import { Post } from "./tipos/types";
+import { Post, User } from "./tipos/types";
 
-const user = {};
 const comment = {
   author: "",
   authorID: 0,
   likes: 2,
   timeStamp: "",
 };
-const post = {};
+
+const john: User = {
+  uuid: "1",
+  handle: "johnthedon",
+  profilePicSrc,
+  postsLiked: {},
+};
 
 export const mockPostState: Post = {
-  author: { handle: "johnthedon", profilePicSrc, uuid: "1" },
+  author: john,
   id: "og",
   timestamp: "2023-06-09T04:00:00.977Z",
   location: "Oceanside, California",
   likes: 10,
-  likedBy: { uuid: user },
+  likedBy: { [john.handle]: john },
   comments: { uuid: comment },
   commentCount: 23,
   // isBookmarked: false, keep this in `user` state ?
@@ -25,9 +30,10 @@ export const mockPostState: Post = {
   imgSrc: "",
 };
 
-export const mockUserState = {
-  name: "machoman",
+export const mockUserState: User = {
+  uuid: "20",
+  handle: "machoman",
   profilePicSrc: profilePicSrc,
-  postsLiked: { postID: post },
-  postsBookmarked: { postID: post },
+  postsLiked: { postID: mockPostState },
+  // postsBookmarked: { postID: post },
 };

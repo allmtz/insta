@@ -1,9 +1,10 @@
 import { StaticImageData } from "next/image";
 
 export type User = {
+  uuid: string;
   handle: string;
   profilePicSrc: StaticImageData;
-  uuid: string;
+  postsLiked: { [postID: string]: Post };
 };
 
 export type Post = {
@@ -14,7 +15,7 @@ export type Post = {
   imgSrc: string | StaticImageData;
   location: string;
   likes: number;
-  likedBy: object;
+  likedBy: Record<string, User>;
   comments: object;
   commentCount: number;
 };
