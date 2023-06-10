@@ -7,6 +7,8 @@ import { mockPostState } from "../../mockData";
 
 type PostsState = Post[];
 
+type PostLikedAction = { payload: { user: User; post: Post } };
+
 const initialState: PostsState = [mockPostState];
 
 export const postsSlice = createSlice({
@@ -39,10 +41,27 @@ export const postsSlice = createSlice({
         };
       },
     },
+    postLiked: {
+      reducer(state, action: PostLikedAction) {
+        const { user, post } = action.payload;
+
+        const match = state.find((p) => p.id === post.id);
+
+        if (match) {
+          if (match.likedBy[user.uuid]) {
+            delete match.likedBy[user.uuid];
+            match.likes--;
+          } else {
+            match.likedBy[user.uuid] = user;
+            match.likes++;
+          }
+        }
+      },
+    },
   },
 });
 
-export const { addPost } = postsSlice.actions;
+export const { addPost, postLiked } = postsSlice.actions;
 
 export const postsSelector = (state: RootState) => state.posts;
 
