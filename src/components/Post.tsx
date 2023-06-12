@@ -2,7 +2,6 @@ import Image from "next/image";
 
 import { Post as TPost } from "../tipos/types";
 
-import likeBtn from "../assets/icons/like.svg";
 import commentBtn from "../assets/icons/comment.svg";
 import horizontalDots from "../assets/icons/hdots.svg";
 import bookmark from "../assets/icons/bookmark.svg";
@@ -11,8 +10,8 @@ import { getTimeAgo } from "../helpers/getTimeAgo";
 
 import { ProfilePic } from "./ProfilePic";
 import { useDispatch, useSelector } from "react-redux";
-import { postLiked } from "../features/posts/postsSlice";
 import { userSelector } from "../features/user/userSlice";
+import { HeartIcon } from "./HeartIcon";
 
 const imageWidth = 320;
 const captionStyle = {
@@ -36,9 +35,6 @@ export const Post = ({ post }: { post: TPost }) => {
     commentCount,
   } = post;
 
-  const onLikeClick = (post: TPost) => {
-    dispatch(postLiked({ post, user }));
-  };
   return (
     <div className="POST flex max-w-fit flex-col gap-2 border-b pb-4">
       <header className="POST-HEADER flex justify-between gap-4">
@@ -65,13 +61,7 @@ export const Post = ({ post }: { post: TPost }) => {
       ></Image>
       <div className="POST-INTERACTIONS flex justify-between ">
         <div className="flex items-center gap-2 ">
-          <Image
-            src={likeBtn}
-            height={30}
-            width={30}
-            alt="like"
-            onClick={() => onLikeClick(post)}
-          ></Image>
+          <HeartIcon post={post} />
           <Image src={commentBtn} height={25} width={25} alt="comment"></Image>
         </div>
         <Image
