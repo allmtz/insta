@@ -21,7 +21,7 @@ export const HeartIcon = ({ post }) => {
       fill={fill}
       xmlns="http://www.w3.org/2000/svg"
       onClick={() => onLikeClick(post)}
-      className="outline-none"
+      className="cursor-pointer select-none hover:scale-105"
     >
       <path
         opacity="0"
