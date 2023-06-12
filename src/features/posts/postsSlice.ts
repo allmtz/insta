@@ -41,6 +41,7 @@ export const postsSlice = createSlice({
         };
       },
     },
+
     postLiked: {
       reducer(state, action: PostLikedAction) {
         const { user, post } = action.payload;
@@ -56,6 +57,9 @@ export const postsSlice = createSlice({
             match.likes++;
           }
         }
+      },
+      prepare(payload) {
+        return { payload: payload };
       },
     },
   },
