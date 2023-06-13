@@ -1,13 +1,17 @@
 import { createSlice, nanoid, PayloadAction } from "@reduxjs/toolkit";
 
 import { RootState } from "../../store";
-import { User, Post } from "../../tipos/types";
+import { User, Post, Comment } from "../../tipos/types";
 import { StaticImageData } from "next/image";
 import { mockPostState } from "../../mockData";
 
 type PostsState = Post[];
 
-type PostLikedAction = { payload: { user: User; post: Post } };
+type PostInteractionAction = { payload: { user: User; post: Post } };
+
+type CommentAction = {
+  payload: { post: Post; commentObj: Comment };
+};
 
 const initialState: PostsState = [mockPostState];
 
@@ -35,7 +39,7 @@ export const postsSlice = createSlice({
             location,
             likes: 10,
             likedBy: {},
-            comments: {},
+            comments: [],
             commentCount: 0,
           },
         };
@@ -43,7 +47,7 @@ export const postsSlice = createSlice({
     },
 
     postLiked: {
-      reducer(state, action: PostLikedAction) {
+      reducer(state, action: PostInteractionAction) {
         const { user, post } = action.payload;
 
         const match = state.find((p) => p.id === post.id);
@@ -62,10 +66,38 @@ export const postsSlice = createSlice({
         return { payload: payload };
       },
     },
+
+    comment: {
+      reducer(state, action: CommentAction) {
+        const { post, commentObj } = action.payload;
+
+        const matchingPost = state.find((p) => p.id === post.id);
+
+        if (matchingPost) {
+          matchingPost.comments.push(commentObj);
+          matchingPost.commentCount++;
+        } else {
+          return;
+        }
+      },
+      prepare(user, post, text): CommentAction {
+        return {
+          payload: {
+            post: post,
+            commentObj: {
+              id: nanoid(),
+              authorID: user.uuid,
+              likes: 0,
+              text: text,
+            },
+          },
+        };
+      },
+    },
   },
 });
 
-export const { addPost, postLiked } = postsSlice.actions;
+export const { addPost, postLiked, comment } = postsSlice.actions;
 
 export const postsSelector = (state: RootState) => state.posts;
 

@@ -81,6 +81,7 @@ export const AddPost = ({
               className="w-full pl-2 outline-none"
               id="location"
               type="text"
+              maxLength={2200}
               placeholder="Add location"
               onChange={(e) => onLocationChange(e.target.value)}
             />

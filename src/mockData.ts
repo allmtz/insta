@@ -13,6 +13,7 @@ const john: User = {
   handle: "johnthedon",
   profilePicSrc,
   postsLiked: {},
+  postsBookmarked: {},
 };
 
 export const mockPostState: Post = {
@@ -22,9 +23,8 @@ export const mockPostState: Post = {
   location: "Oceanside, California",
   likes: 10,
   likedBy: { [john.handle]: john },
-  comments: { uuid: comment },
+  comments: [],
   commentCount: 23,
-  // isBookmarked: false, keep this in `user` state ?
   caption:
     "Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit rerum laudantium dolore. Commodi temporibus saepe animi pariatur, libero culpa provident.",
   imgSrc: "",
@@ -35,5 +35,5 @@ export const mockUserState: User = {
   handle: "machoman",
   profilePicSrc: profilePicSrc,
   postsLiked: { postID: mockPostState },
-  // postsBookmarked: { postID: post },
+  postsBookmarked: {},
 };

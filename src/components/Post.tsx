@@ -12,6 +12,7 @@ import { ProfilePic } from "./ProfilePic";
 // import { userSelector } from "../features/user/userSlice";
 import { HeartIcon } from "./HeartIcon";
 import { BookmarkIcon } from "./BookmarkIcon";
+import { AddComment } from "./AddComment";
 
 const imageWidth = 320;
 const captionStyle = {
@@ -36,7 +37,7 @@ export const Post = ({ post }: { post: TPost }) => {
   } = post;
 
   return (
-    <div className="POST flex max-w-fit flex-col gap-2 border-b pb-4">
+    <div className="POST flex max-w-fit flex-col gap-2 border-b">
       <header className="POST-HEADER flex justify-between gap-4">
         <div className="flex gap-2 ">
           <ProfilePic picSrc={author.profilePicSrc} />
@@ -74,7 +75,7 @@ export const Post = ({ post }: { post: TPost }) => {
         <div>
           <p className="text-gray-500 "> View all {commentCount} comments</p>
           <p className="COMMENTS"></p>
-          <p className="text-gray-500">Add a comment...</p>
+          <AddComment post={post} />
         </div>
       </div>
     </div>
