@@ -3,6 +3,8 @@ import { StaticImageData } from "next/image";
 export type Comment = {
   id: string;
   authorID: string;
+  authorHandle: string;
+  authorProfilePicSrc: string;
   text: string;
   likes: number;
 };

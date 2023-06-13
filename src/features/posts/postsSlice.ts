@@ -87,6 +87,8 @@ export const postsSlice = createSlice({
             commentObj: {
               id: nanoid(),
               authorID: user.uuid,
+              authorHandle: user.handle,
+              authorProfilePicSrc: user.profilePicSrc,
               likes: 0,
               text: text,
             },
