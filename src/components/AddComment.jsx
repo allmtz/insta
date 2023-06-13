@@ -7,6 +7,7 @@ export const AddComment = ({ post }) => {
   const dispatch = useDispatch();
   const user = useSelector(userSelector);
   const [text, setText] = useState("");
+  const [showPostBtn, setShowPostBtn] = useState(false);
 
   const onPostClick = (post) => {
     if (text.trim() === "") return;
@@ -15,6 +16,11 @@ export const AddComment = ({ post }) => {
   };
 
   const onCommentChange = (value) => {
+    if (value.trim() !== "") {
+      setShowPostBtn(true);
+    } else {
+      setShowPostBtn(false);
+    }
     setText(value);
   };
 
@@ -27,12 +33,15 @@ export const AddComment = ({ post }) => {
         maxLength={2200}
         onChange={(e) => onCommentChange(e.target.value)}
       ></textarea>
-      <p
-        className="cursor-pointer text-blue-500 hover:text-black"
-        onClick={() => onPostClick(post)}
-      >
-        Post
-      </p>
+
+      {showPostBtn && (
+        <p
+          className="cursor-pointer text-blue-500 hover:text-black"
+          onClick={() => onPostClick(post)}
+        >
+          Post
+        </p>
+      )}
     </div>
   );
 };
