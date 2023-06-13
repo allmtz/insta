@@ -4,14 +4,14 @@ import { Post as TPost } from "../tipos/types";
 
 import commentBtn from "../assets/icons/comment.svg";
 import horizontalDots from "../assets/icons/hdots.svg";
-import bookmark from "../assets/icons/bookmark.svg";
 
 import { getTimeAgo } from "../helpers/getTimeAgo";
 
 import { ProfilePic } from "./ProfilePic";
-import { useDispatch, useSelector } from "react-redux";
-import { userSelector } from "../features/user/userSlice";
+// import { useDispatch, useSelector } from "react-redux";
+// import { userSelector } from "../features/user/userSlice";
 import { HeartIcon } from "./HeartIcon";
+import { BookmarkIcon } from "./BookmarkIcon";
 
 const imageWidth = 320;
 const captionStyle = {
@@ -19,8 +19,8 @@ const captionStyle = {
 };
 
 export const Post = ({ post }: { post: TPost }) => {
-  const user = useSelector(userSelector);
-  const dispatch = useDispatch();
+  // const user = useSelector(userSelector);
+  // const dispatch = useDispatch();
 
   const {
     id,
@@ -64,13 +64,7 @@ export const Post = ({ post }: { post: TPost }) => {
           <HeartIcon post={post} />
           <Image src={commentBtn} height={25} width={25} alt="comment"></Image>
         </div>
-        <Image
-          className="justify-self-end"
-          src={bookmark}
-          height={25}
-          width={25}
-          alt="bookmark"
-        ></Image>
+        <BookmarkIcon post={post} />
       </div>
       <div className={captionStyle[320]}>
         <p className="font-semibold">{likes} likes</p>

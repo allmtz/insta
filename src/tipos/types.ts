@@ -5,6 +5,7 @@ export type User = {
   handle: string;
   profilePicSrc: StaticImageData;
   postsLiked: { [postID: string]: Post };
+  postsBookmarked: { [postID: string]: Post };
 };
 
 export type Post = {
