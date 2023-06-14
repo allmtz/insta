@@ -3,7 +3,7 @@ import { userSelector } from "../features/user/userSlice";
 import { comment } from "../features/posts/postsSlice";
 import { useState } from "react";
 
-export const AddComment = ({ post }) => {
+export const AddComment = ({ post, id }) => {
   const dispatch = useDispatch();
   const user = useSelector(userSelector);
   const [text, setText] = useState("");
@@ -25,13 +25,14 @@ export const AddComment = ({ post }) => {
   };
 
   return (
-    <div className="ADD-COMMENT flex items-start">
+    <div className="ADD-COMMENT flex h-full items-start">
       <textarea
-        className="h-fit w-full resize-none outline-none placeholder:text-gray-500"
+        className="h-full w-full resize-none outline-none placeholder:text-gray-500"
         placeholder="Add a comment..."
         name="add-comment"
         maxLength={2200}
         onChange={(e) => onCommentChange(e.target.value)}
+        id={id}
       ></textarea>
 
       {showPostBtn && (

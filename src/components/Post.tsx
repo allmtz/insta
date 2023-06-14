@@ -101,7 +101,7 @@ export const Post = ({ post }: { post: TPost }) => {
           >
             View all {commentCount} comments
           </p>
-          <AddComment post={post} />
+          <AddComment post={post} id="" />
         </div>
       </div>
       {showFocusedPost && (
