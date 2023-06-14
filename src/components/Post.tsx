@@ -13,6 +13,9 @@ import { ProfilePic } from "./ProfilePic";
 import { HeartIcon } from "./HeartIcon";
 import { BookmarkIcon } from "./BookmarkIcon";
 import { AddComment } from "./AddComment";
+import { useState } from "react";
+import { PostFocused } from "./PostFocused";
+import { Modal } from "./Modal";
 
 const imageWidth = 320;
 const captionStyle = {
@@ -22,6 +25,18 @@ const captionStyle = {
 export const Post = ({ post }: { post: TPost }) => {
   // const user = useSelector(userSelector);
   // const dispatch = useDispatch();
+
+  const [showFocusedPost, setShowFocusedPost] = useState(false);
+
+  const onModalClick = (e: any) => {
+    if (e.target.classList.contains("MODAL")) {
+      setShowFocusedPost((showFocusedPost) => !showFocusedPost);
+    } else return;
+  };
+
+  const onViewCommentsClick = (post: TPost) => {
+    setShowFocusedPost(true);
+  };
 
   const {
     id,
@@ -63,7 +78,14 @@ export const Post = ({ post }: { post: TPost }) => {
       <div className="POST-INTERACTIONS flex justify-between ">
         <div className="flex items-center gap-2 ">
           <HeartIcon post={post} />
-          <Image src={commentBtn} height={25} width={25} alt="comment"></Image>
+          <Image
+            src={commentBtn}
+            className="cursor-pointer hover:scale-105"
+            height={25}
+            width={25}
+            alt="comment"
+            onClick={() => onViewCommentsClick(post)}
+          ></Image>
         </div>
         <BookmarkIcon post={post} />
       </div>
@@ -73,11 +95,20 @@ export const Post = ({ post }: { post: TPost }) => {
           <span className="font-semibold">{author.handle} </span> {caption}{" "}
         </p>
         <div>
-          <p className="text-gray-500 "> View all {commentCount} comments</p>
-          <p className="COMMENTS"></p>
+          <p
+            className="cursor-pointer text-gray-500"
+            onClick={() => onViewCommentsClick(post)}
+          >
+            View all {commentCount} comments
+          </p>
           <AddComment post={post} />
         </div>
       </div>
+      {showFocusedPost && (
+        <Modal onClick={onModalClick}>
+          <PostFocused post={post} />
+        </Modal>
+      )}
     </div>
   );
 };
