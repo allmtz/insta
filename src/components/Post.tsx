@@ -66,12 +66,12 @@ export const Post = ({ post }: { post: TPost }) => {
           </div>
         </div>
 
-        <Image src={horizontalDots} width={25} height={10} alt=""></Image>
+        <Image src={horizontalDots} width={25} height={25} alt=""></Image>
       </header>
       <Image
-        className="POST-PIC rounded-sm"
+        className="POST-PIC h-auto w-auto rounded-sm"
         src={imgSrc}
-        height={300}
+        height={320}
         width={imageWidth}
         alt=""
       ></Image>

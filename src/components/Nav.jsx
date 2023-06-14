@@ -23,7 +23,7 @@ export const Nav = () => {
         <h1 className="cursor-default">Instaclone</h1>
         <ul>
           <li className="flex cursor-pointer gap-2" onClick={onAddPostClick}>
-            <Image src={addPost} height={20} width={20}></Image>
+            <Image src={addPost} width={25} height={25} alt=""></Image>
             <span>Create</span>
           </li>
         </ul>

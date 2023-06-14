@@ -1,5 +1,6 @@
 import profilePicSrc from "./assets/profle.jpg";
 import { Post, User } from "./tipos/types";
+import img from "./assets/nature.jpg";
 
 const comment = {
   author: "",
@@ -27,7 +28,7 @@ export const mockPostState: Post = {
   commentCount: 23,
   caption:
     "Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit rerum laudantium dolore. Commodi temporibus saepe animi pariatur, libero culpa provident.",
-  imgSrc: "",
+  imgSrc: img,
 };
 
 export const mockUserState: User = {

@@ -20,7 +20,7 @@ export const PostFocused = ({ post }) => {
   return (
     <>
       <div className="flex bg-white">
-        <Image src={post.imgSrc} height={500} width={500} />
+        <Image src={post.imgSrc} height={500} width={500} alt="" />
         <div>
           <header className="flex items-center gap-2 p-2">
             <ProfilePic picSrc={post.author.profilePicSrc} />
