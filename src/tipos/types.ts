@@ -4,7 +4,7 @@ export type Comment = {
   id: string;
   authorID: string;
   authorHandle: string;
-  authorProfilePicSrc: string;
+  authorProfilePicSrc: string | StaticImageData;
   text: string;
   likes: number;
 };
@@ -15,7 +15,7 @@ export type User = {
   uuid: string;
   handle: string;
   name: string;
-  profilePicSrc: StaticImageData;
+  profilePicSrc: StaticImageData | string;
   postsLiked: { [postID: string]: Post };
   postsBookmarked: { [postID: string]: Post };
   posts: Post[];

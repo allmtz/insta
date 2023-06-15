@@ -3,11 +3,11 @@ import { createSlice } from "@reduxjs/toolkit";
 import { RootState } from "../../store";
 import { User, Post } from "../../tipos/types";
 
-import { mockUserState } from "../../mockData";
+import { john } from "../../mockData";
 
 type PostBookmarkedAction = { payload: Post };
 
-const initialState: User = mockUserState;
+const initialState: User = john;
 
 export const userSlice = createSlice({
   name: "user",

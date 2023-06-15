@@ -3,7 +3,7 @@ import { createSlice, nanoid, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "../../store";
 import { User, Post, Comment } from "../../tipos/types";
 import { StaticImageData } from "next/image";
-import { mockPostState } from "../../mockData";
+import { initialPosts } from "../../mockData";
 
 type PostsState = Post[];
 
@@ -13,7 +13,7 @@ type CommentAction = {
   payload: { post: Post; commentObj: Comment };
 };
 
-const initialState: PostsState = [mockPostState];
+const initialState: PostsState = initialPosts;
 
 export const postsSlice = createSlice({
   name: "posts",
