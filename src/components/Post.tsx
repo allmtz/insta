@@ -16,6 +16,7 @@ import { AddComment } from "./AddComment";
 import { useState } from "react";
 import { PostFocused } from "./PostFocused";
 import { Modal } from "./Modal";
+import Link from "next/link";
 
 const imageWidth = 320;
 const captionStyle = {
@@ -54,7 +55,7 @@ export const Post = ({ post }: { post: TPost }) => {
   return (
     <div className="POST flex max-w-fit flex-col gap-2 border-b">
       <header className="POST-HEADER flex justify-between gap-4">
-        <div className="flex gap-2 ">
+        <Link href={`/profile/${post.author.uuid}`} className="flex gap-2 ">
           <ProfilePic picSrc={author.profilePicSrc} size={"small"} />
           <div className="flex flex-col justify-center">
             <p className="">
@@ -64,7 +65,7 @@ export const Post = ({ post }: { post: TPost }) => {
             </p>
             <p className="text-xs">{location}</p>
           </div>
-        </div>
+        </Link>
 
         <Image src={horizontalDots} width={25} height={25} alt=""></Image>
       </header>
