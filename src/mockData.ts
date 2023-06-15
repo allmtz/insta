@@ -2,19 +2,17 @@ import profilePicSrc from "./assets/profle.jpg";
 import { Post, User } from "./tipos/types";
 import img from "./assets/nature.jpg";
 
-const comment = {
-  author: "",
-  authorID: 0,
-  likes: 2,
-  timeStamp: "",
-};
-
 const john: User = {
   uuid: "1",
   handle: "johnthedon",
+  name: "John Smith",
+  bio: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit.",
   profilePicSrc,
   postsLiked: {},
   postsBookmarked: {},
+  posts: [],
+  followers: [],
+  following: [],
 };
 
 export const mockPostState: Post = {
@@ -34,7 +32,12 @@ export const mockPostState: Post = {
 export const mockUserState: User = {
   uuid: "20",
   handle: "machoman",
+  name: "Mike Michaels",
+  bio: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit rerum laudantium dolore. Commodi temporibus saepe animi",
   profilePicSrc: profilePicSrc,
   postsLiked: { postID: mockPostState },
   postsBookmarked: {},
+  posts: [mockPostState],
+  followers: [],
+  following: [],
 };

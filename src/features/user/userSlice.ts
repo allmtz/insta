@@ -3,17 +3,11 @@ import { createSlice } from "@reduxjs/toolkit";
 import { RootState } from "../../store";
 import { User, Post } from "../../tipos/types";
 
-import tempProfilePic from "../../assets/profle.jpg";
+import { mockUserState } from "../../mockData";
 
 type PostBookmarkedAction = { payload: Post };
 
-const initialState: User = {
-  handle: "machomike",
-  profilePicSrc: tempProfilePic,
-  uuid: "1",
-  postsLiked: {},
-  postsBookmarked: {},
-};
+const initialState: User = mockUserState;
 
 export const userSlice = createSlice({
   name: "user",
