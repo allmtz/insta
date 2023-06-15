@@ -8,8 +8,6 @@ import TEMPimg from "../assets/nature.jpg";
 const mockUsers = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
 export const Profile = ({ user }: { user: User }) => {
-  console.log(user);
-
   return (
     <>
       <header className="m-auto flex gap-20">
@@ -45,8 +43,12 @@ export const Profile = ({ user }: { user: User }) => {
         <div className="posts grid grid-cols-3 gap-1">
           {mockUsers.map((post) => (
             <>
-              <div className="PROFILE-POST">
+              <div className="PROFILE-POST relative">
                 <Image src={TEMPimg} height={300} width={300} alt="" />
+                <div className="OVERLAY absolute top-0 flex h-full w-full items-center justify-center bg-black bg-opacity-50 opacity-0 hover:opacity-100">
+                  <div>LIKES #</div>
+                  <div>COMMENTS #</div>
+                </div>
               </div>
             </>
           ))}
