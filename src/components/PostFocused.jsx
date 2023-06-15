@@ -11,7 +11,7 @@ import commentIcon from "../assets/icons/comment.svg";
 export const PostFocused = ({ post }) => {
   const commentsDisplayed = post.comments.map((comment) => (
     <div className="flex gap-3 text-sm">
-      <ProfilePic picSrc={comment.authorProfilePicSrc} />
+      <ProfilePic picSrc={comment.authorProfilePicSrc} size={"small"} />
       <div>
         <span className="font-bold">{comment.authorHandle}</span>
         <p className="max-w-md break-all">{comment.text}</p>
@@ -25,7 +25,7 @@ export const PostFocused = ({ post }) => {
         <Image src={post.imgSrc} height={500} width={500} alt="" />
         <div>
           <header className="flex items-center gap-3 border-b p-3 text-sm">
-            <ProfilePic picSrc={post.author.profilePicSrc} />
+            <ProfilePic picSrc={post.author.profilePicSrc} size="small" />
             <div>
               <p className="font-bold">{post.author.handle}</p>
               <p>{post.location}</p>
@@ -40,7 +40,7 @@ export const PostFocused = ({ post }) => {
           </header>
           <section className="CONTENT flex min-w-[300px] max-w-lg flex-col gap-2 p-3 text-sm">
             <div className="CAPTION flex gap-3">
-              <ProfilePic picSrc={post.author.profilePicSrc} />
+              <ProfilePic picSrc={post.author.profilePicSrc} size={"small"} />
               <p className="text-md max-w-sm">
                 {" "}
                 <span className="font-bold">{post.author.handle}</span>{" "}

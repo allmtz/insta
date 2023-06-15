@@ -55,7 +55,7 @@ export const Post = ({ post }: { post: TPost }) => {
     <div className="POST flex max-w-fit flex-col gap-2 border-b">
       <header className="POST-HEADER flex justify-between gap-4">
         <div className="flex gap-2 ">
-          <ProfilePic picSrc={author.profilePicSrc} />
+          <ProfilePic picSrc={author.profilePicSrc} size={"small"} />
           <div className="flex flex-col justify-center">
             <p className="">
               <span className="font-semibold">{author.handle} </span>
