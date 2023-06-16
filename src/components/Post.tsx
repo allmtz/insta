@@ -18,6 +18,7 @@ import { PostFocused } from "./PostFocused";
 import { Modal } from "./Modal";
 import Link from "next/link";
 import { PostInteractionList } from "./PostInteractionList";
+import { LikedBy } from "./LikedBy";
 
 const imageWidth = 320;
 const captionStyle = {
@@ -30,11 +31,13 @@ export const Post = ({ post }: { post: TPost }) => {
 
   const [showFocusedPost, setShowFocusedPost] = useState(false);
   const [showSettings, setShowSettings] = useState(false);
+  const [showLikedBy, setShowLikedBy] = useState(false);
 
   const onModalClick = (e: any) => {
     if (e.target.classList.contains("MODAL")) {
       setShowFocusedPost(false);
       setShowSettings(false);
+      setShowLikedBy(false);
     } else return;
   };
 
@@ -44,6 +47,10 @@ export const Post = ({ post }: { post: TPost }) => {
 
   const onHdotsClick = (post: TPost) => {
     setShowSettings(true);
+  };
+
+  const onLikesClick = () => {
+    setShowLikedBy(true);
   };
 
   const {
@@ -105,10 +112,21 @@ export const Post = ({ post }: { post: TPost }) => {
         <BookmarkIcon post={post} />
       </div>
       <div className={captionStyle[320]}>
-        <p className="font-semibold">{likes} likes</p>
-        <p>
-          <span className="font-semibold">{author.handle} </span> {caption}{" "}
+        <p
+          className="cursor-pointer font-semibold"
+          onClick={() => {
+            onLikesClick();
+          }}
+        >
+          {likes} likes
         </p>
+
+        <div>
+          <Link href={`/profile/${post.author.uuid}`} className="font-semibold">
+            {author.handle}
+          </Link>{" "}
+          {caption}
+        </div>
         <div>
           <p
             className="cursor-pointer text-gray-500"
@@ -129,6 +147,12 @@ export const Post = ({ post }: { post: TPost }) => {
       {showFocusedPost && (
         <Modal onClick={onModalClick}>
           <PostFocused post={post} />
+        </Modal>
+      )}
+
+      {showLikedBy && (
+        <Modal onClick={onModalClick}>
+          <LikedBy post={post} />
         </Modal>
       )}
     </div>

@@ -5,6 +5,7 @@ import { ProfilePic } from "./ProfilePic";
 
 import TEMPimg from "../assets/nature.jpg";
 
+//change this to real users once they have some posts
 const mockUsers = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
 export const Profile = ({ user }: { user: User }) => {
@@ -15,7 +16,7 @@ export const Profile = ({ user }: { user: User }) => {
         <div>
           <div className="INTERACTIONS flex items-center gap-7">
             <p className="font-bold">{user.handle}</p>
-            <button className="rounded-md bg-blue-400 px-6 py-1 font-bold text-white">
+            <button className="rounded-md bg-blue-400 px-6 py-1 font-bold text-white hover:bg-blue-600">
               Follow
             </button>
             <HorizontalDots />
