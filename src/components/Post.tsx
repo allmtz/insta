@@ -17,6 +17,7 @@ import { useState } from "react";
 import { PostFocused } from "./PostFocused";
 import { Modal } from "./Modal";
 import Link from "next/link";
+import { PostInteractionList } from "./PostInteractionList";
 
 const imageWidth = 320;
 const captionStyle = {
@@ -28,15 +29,21 @@ export const Post = ({ post }: { post: TPost }) => {
   // const dispatch = useDispatch();
 
   const [showFocusedPost, setShowFocusedPost] = useState(false);
+  const [showSettings, setShowSettings] = useState(false);
 
   const onModalClick = (e: any) => {
     if (e.target.classList.contains("MODAL")) {
-      setShowFocusedPost((showFocusedPost) => !showFocusedPost);
+      setShowFocusedPost(false);
+      setShowSettings(false);
     } else return;
   };
 
   const onViewCommentsClick = (post: TPost) => {
     setShowFocusedPost(true);
+  };
+
+  const onHdotsClick = (post: TPost) => {
+    setShowSettings(true);
   };
 
   const {
@@ -67,7 +74,14 @@ export const Post = ({ post }: { post: TPost }) => {
           </div>
         </Link>
 
-        <Image src={horizontalDots} width={25} height={25} alt=""></Image>
+        <Image
+          src={horizontalDots}
+          width={25}
+          height={25}
+          alt=""
+          onClick={() => onHdotsClick(post)}
+          className="cursor-pointer"
+        ></Image>
       </header>
       <Image
         className="POST-PIC h-auto w-auto rounded-sm"
@@ -105,6 +119,13 @@ export const Post = ({ post }: { post: TPost }) => {
           <AddComment post={post} id="" />
         </div>
       </div>
+
+      {showSettings && (
+        <Modal onClick={onModalClick}>
+          <PostInteractionList post={post} />
+        </Modal>
+      )}
+
       {showFocusedPost && (
         <Modal onClick={onModalClick}>
           <PostFocused post={post} />
