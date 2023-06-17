@@ -1,7 +1,7 @@
-import { useDispatch, useSelector } from "react-redux";
-import { userSelector } from "../features/user/userSlice";
-import { comment } from "../features/posts/postsSlice";
 import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { commented } from "../features/PostInteractions/interactionsSlice";
+import { userSelector } from "../features/user/userSlice";
 
 export const AddComment = ({ post, id }) => {
   const dispatch = useDispatch();
@@ -12,7 +12,9 @@ export const AddComment = ({ post, id }) => {
   const onPostClick = (post) => {
     if (text.trim() === "") return;
 
-    dispatch(comment(user, post, text));
+    dispatch(commented(user, post, text));
+    setText("");
+    setShowPostBtn(false);
   };
 
   const onCommentChange = (value) => {
@@ -32,6 +34,7 @@ export const AddComment = ({ post, id }) => {
         name="add-comment"
         maxLength={2200}
         onChange={(e) => onCommentChange(e.target.value)}
+        value={text}
         id={id}
       ></textarea>
 

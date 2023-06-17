@@ -1,16 +1,24 @@
 import { useDispatch, useSelector } from "react-redux";
 import { userSelector } from "../features/user/userSlice";
-import { postLiked } from "../features/posts/postsSlice";
+import {
+  interactionsSelector,
+  likedPost,
+} from "../features/PostInteractions/interactionsSlice";
 
 export const HeartIcon = ({ post }) => {
-  const user = useSelector(userSelector);
   const dispatch = useDispatch();
+  const user = useSelector(userSelector);
+  const allInteractions = useSelector(interactionsSelector);
+
+  const postInteractions = allInteractions[post.id];
 
   const onLikeClick = (post) => {
-    dispatch(postLiked({ post, user }));
+    dispatch(likedPost(user, post));
   };
 
-  const fill = post.likedBy[user.uuid] ? "red" : "none";
+  const fill = postInteractions.likedBy.some((u) => u.uuid === user.uuid)
+    ? "red"
+    : "none";
 
   return (
     // <?xml version="1.0" encoding="utf-8"?><!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->

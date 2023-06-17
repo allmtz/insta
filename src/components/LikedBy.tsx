@@ -1,39 +1,31 @@
-import { useDispatch, useSelector } from "react-redux";
-import { Post, User } from "../tipos/types";
+import { useSelector } from "react-redux";
+import { Post } from "../tipos/types";
 import { ProfilePic } from "./ProfilePic";
-import { followEvent, userSelector } from "../features/user/userSlice";
+import { userSelector } from "../features/user/userSlice";
 import { nanoid } from "@reduxjs/toolkit";
+import { interactionsSelector } from "../features/PostInteractions/interactionsSlice";
+import { FollowBtn } from "./FollowBtn";
 
 export const LikedBy = ({ post }: { post: Post }) => {
-  const dispatch = useDispatch();
   const user = useSelector(userSelector);
 
-  const onFollowClick = (targetUser: User) => {
-    dispatch(followEvent(targetUser));
-  };
+  const allInteractions = useSelector(interactionsSelector);
+  const postInteractions = allInteractions[post.id];
 
-  // display all the users who like the post. Determine the content of the "Follow" button
-  const displayLikedBy = Object.keys(post.likedBy).map((u) => (
+  const displayUsersWhoLiked = postInteractions.likedBy.map((u) => (
     <div key={nanoid()} className="flex items-center gap-2 p-2">
-      <ProfilePic picSrc={post.likedBy[u].profilePicSrc} size="small" />
-      <p>{u}</p>
-      {post.likedBy[u].uuid !== user.uuid && (
-        <button
-          className="ml-auto rounded-md bg-blue-400 px-6 py-1 font-bold text-white hover:bg-blue-600"
-          onClick={() => onFollowClick(post.likedBy[u])}
-        >
-          {user.following.some((usr) => usr.uuid === post.likedBy[u].uuid)
-            ? "Unfollow"
-            : "Follow"}
-        </button>
-      )}
+      <ProfilePic picSrc={u.profilePicSrc} size="small" />
+      <p className="mr-auto">{u.handle}</p>
+
+      {/* avoid rendering a "follow" btn for the currently logged in user */}
+      {u.uuid !== user.uuid && <FollowBtn user={u} />}
     </div>
   ));
 
   return (
-    <div className="min-w-[300px] rounded-md bg-white">
+    <div className="min-w-[300px] rounded-md bg-white pb-2">
       <h2 className="border-b py-2 text-center">Likes</h2>
-      <div className="flex flex-col px-2">{displayLikedBy}</div>
+      <div className="flex flex-col px-2">{displayUsersWhoLiked}</div>
     </div>
   );
 };

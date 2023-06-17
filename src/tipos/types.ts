@@ -9,8 +9,6 @@ export type Comment = {
   likes: number;
 };
 
-export type Users = User[];
-
 export type User = {
   uuid: string;
   handle: string;
@@ -19,8 +17,8 @@ export type User = {
   postsLiked: { [postID: string]: Post };
   postsBookmarked: { [postID: string]: Post };
   posts: Post[];
-  followers: Users;
-  following: Users;
+  followers: User[];
+  following: User[];
   bio: string;
 };
 
@@ -31,8 +29,4 @@ export type Post = {
   caption: string;
   imgSrc: string | StaticImageData;
   location: string;
-  likes: number;
-  likedBy: Record<string, User>;
-  comments: Comment[];
-  commentCount: number;
 };

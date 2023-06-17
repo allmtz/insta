@@ -31,7 +31,7 @@ const john: User = {
   following: [mike],
 };
 
-const johnsPost: Post = {
+export const johnsPost: Post = {
   author: john,
   id: "johnsPost",
   timestamp: "2023-06-13T06:14:00+0000",
@@ -61,7 +61,7 @@ const johnsPost: Post = {
   imgSrc: pier,
 };
 
-const mikesPost: Post = {
+export const mikesPost: Post = {
   author: mike,
   id: "mikesPost",
   timestamp: "2023-06-09T04:00:00.977Z",

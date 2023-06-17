@@ -1,11 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { Users } from "../../tipos/types";
+import { User } from "../../tipos/types";
 import { RootState } from "../../store";
 
 //mock users
 import { john, mike } from "../../mockData";
 
-const initialState: Users = [john, mike];
+const initialState: User[] = [john, mike];
 
 const usersSlice = createSlice({
   name: "users",

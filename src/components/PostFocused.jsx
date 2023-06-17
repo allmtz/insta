@@ -7,10 +7,18 @@ import { AddComment } from "./AddComment";
 import moment from "moment";
 
 import commentIcon from "../assets/icons/comment.svg";
+import { useSelector } from "react-redux";
+import { interactionsSelector } from "../features/PostInteractions/interactionsSlice";
+import { nanoid } from "@reduxjs/toolkit";
 
 export const PostFocused = ({ post }) => {
-  const commentsDisplayed = post.comments.map((comment) => (
-    <div className="flex gap-3 text-sm">
+  const allInteractions = useSelector(interactionsSelector);
+  const postInteractions = allInteractions[post.id];
+
+  const comments = postInteractions.comments;
+
+  const commentsDisplayed = comments.map((comment) => (
+    <div key={nanoid()} className="flex gap-3 text-sm">
       <ProfilePic picSrc={comment.authorProfilePicSrc} size={"small"} />
       <div>
         <span className="font-bold">{comment.authorHandle}</span>
@@ -67,7 +75,7 @@ export const PostFocused = ({ post }) => {
               </div>
             </div>
             <div className="POST-INFO border-b pb-2">
-              <p className="font-bold">{post.likes} likes</p>
+              <p className="font-bold">{postInteractions.likes} likes</p>
               <p>{moment(post.timestamp).fromNow()}</p>
             </div>
             <div className="COMMENT h-[80px] ">

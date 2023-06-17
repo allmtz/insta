@@ -10,6 +10,8 @@ import { Dispatch, SetStateAction, useState } from "react";
 
 import tempPostPicSrc from "../assets/nature.jpg";
 import { ProfilePic } from "./ProfilePic";
+import { nanoid } from "@reduxjs/toolkit";
+import { initializeInteractions } from "../features/PostInteractions/interactionsSlice";
 
 export const AddPost = ({
   setModalIsOpen,
@@ -33,7 +35,11 @@ export const AddPost = ({
 
   const onShareClick = () => {
     if (caption.trim() && location.trim()) {
-      dispatch(addPost(user, caption, location, tempPostPicSrc));
+      const id = nanoid();
+
+      dispatch(addPost(id, user, caption, location, tempPostPicSrc));
+      dispatch(initializeInteractions(id));
+
       setModalIsOpen(false);
     }
   };

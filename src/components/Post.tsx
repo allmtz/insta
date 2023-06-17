@@ -8,8 +8,7 @@ import horizontalDots from "../assets/icons/hdots.svg";
 import { getTimeAgo } from "../helpers/getTimeAgo";
 
 import { ProfilePic } from "./ProfilePic";
-// import { useDispatch, useSelector } from "react-redux";
-// import { userSelector } from "../features/user/userSlice";
+import { useSelector } from "react-redux";
 import { HeartIcon } from "./HeartIcon";
 import { BookmarkIcon } from "./BookmarkIcon";
 import { AddComment } from "./AddComment";
@@ -19,6 +18,7 @@ import { Modal } from "./Modal";
 import Link from "next/link";
 import { PostInteractionList } from "./PostInteractionList";
 import { LikedBy } from "./LikedBy";
+import { interactionsSelector } from "../features/PostInteractions/interactionsSlice";
 
 const imageWidth = 320;
 const captionStyle = {
@@ -26,8 +26,10 @@ const captionStyle = {
 };
 
 export const Post = ({ post }: { post: TPost }) => {
-  // const user = useSelector(userSelector);
-  // const dispatch = useDispatch();
+  const allInteractions = useSelector(interactionsSelector);
+  const postInteractions = allInteractions[post.id];
+
+  const { comments, likes } = postInteractions;
 
   const [showFocusedPost, setShowFocusedPost] = useState(false);
   const [showSettings, setShowSettings] = useState(false);
@@ -41,11 +43,11 @@ export const Post = ({ post }: { post: TPost }) => {
     } else return;
   };
 
-  const onViewCommentsClick = (post: TPost) => {
+  const onViewCommentsClick = () => {
     setShowFocusedPost(true);
   };
 
-  const onHdotsClick = (post: TPost) => {
+  const onHdotsClick = () => {
     setShowSettings(true);
   };
 
@@ -53,18 +55,7 @@ export const Post = ({ post }: { post: TPost }) => {
     setShowLikedBy(true);
   };
 
-  const {
-    id,
-    timestamp,
-    author,
-    caption,
-    imgSrc,
-    location,
-    likes,
-    likedBy,
-    comments,
-    commentCount,
-  } = post;
+  const { id, timestamp, author, caption, imgSrc, location } = post;
 
   return (
     <div className="POST flex max-w-fit flex-col gap-2 border-b">
@@ -86,7 +77,7 @@ export const Post = ({ post }: { post: TPost }) => {
           width={25}
           height={25}
           alt=""
-          onClick={() => onHdotsClick(post)}
+          onClick={() => onHdotsClick()}
           className="cursor-pointer"
         ></Image>
       </header>
@@ -106,7 +97,7 @@ export const Post = ({ post }: { post: TPost }) => {
             height={25}
             width={25}
             alt="comment"
-            onClick={() => onViewCommentsClick(post)}
+            onClick={() => onViewCommentsClick()}
           ></Image>
         </div>
         <BookmarkIcon post={post} />
@@ -130,9 +121,9 @@ export const Post = ({ post }: { post: TPost }) => {
         <div>
           <p
             className="cursor-pointer text-gray-500"
-            onClick={() => onViewCommentsClick(post)}
+            onClick={() => onViewCommentsClick()}
           >
-            View all {commentCount} comments
+            View all {comments.length} comments
           </p>
           <AddComment post={post} id="" />
         </div>
