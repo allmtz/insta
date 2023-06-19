@@ -10,6 +10,7 @@ import commentIcon from "../assets/icons/comment.svg";
 import { useSelector } from "react-redux";
 import { interactionsSelector } from "../features/PostInteractions/interactionsSlice";
 import { nanoid } from "@reduxjs/toolkit";
+import { ScrollArea } from "./shadcn/scroll-area";
 
 export const PostFocused = ({ post }) => {
   const allInteractions = useSelector(interactionsSelector);
@@ -18,12 +19,12 @@ export const PostFocused = ({ post }) => {
   const comments = postInteractions.comments;
 
   const commentsDisplayed = comments.map((comment) => (
-    <div key={nanoid()} className="flex gap-3 text-sm">
+    <div key={nanoid()} className="items-top mt-2 flex gap-3 text-sm">
       <ProfilePic picSrc={comment.authorProfilePicSrc} size={"small"} />
-      <div>
-        <span className="font-bold">{comment.authorHandle}</span>
-        <p className="max-w-md break-all">{comment.text}</p>
-      </div>
+      <p className="max-w-[320px]">
+        <span className="font-bold">{comment.authorHandle}</span>{" "}
+        <span className="break-all">{comment.text}</span>
+      </p>
     </div>
   ));
 
@@ -47,16 +48,16 @@ export const PostFocused = ({ post }) => {
             />
           </header>
           <section className="CONTENT flex min-w-[300px] max-w-lg flex-col gap-2 p-3 text-sm">
-            <div className="CAPTION flex gap-3">
-              <ProfilePic picSrc={post.author.profilePicSrc} size={"small"} />
-              <p className="text-md max-w-sm">
-                {" "}
-                <span className="font-bold">{post.author.handle}</span>{" "}
-                {post.caption}
-              </p>
-            </div>
-
-            {commentsDisplayed}
+            <ScrollArea className=" h-[200px] w-[400px]">
+              <div className="CAPTION flex gap-3">
+                <ProfilePic picSrc={post.author.profilePicSrc} size={"small"} />
+                <p className="max-w-[320px]">
+                  <span className="font-bold">{post.author.handle}</span>{" "}
+                  <span className="break-all">{post.caption}</span>
+                </p>
+              </div>
+              {commentsDisplayed}
+            </ScrollArea>
 
             <div className="INTERACTIONS mt-2 flex items-center gap-4 border-t pt-2">
               <HeartIcon post={post} />
