@@ -1,6 +1,12 @@
-import Image from "next/image";
+import Image, { StaticImageData } from "next/image";
 
-export const ProfilePic = ({ picSrc, size }) => {
+export const ProfilePic = ({
+  picSrc,
+  size,
+}: {
+  picSrc: string | StaticImageData;
+  size: "small" | "large";
+}) => {
   const styles = {
     small: "h-10 w-10 rounded-full object-cover object-top",
     large: "h-40 w-40 rounded-full object-cover object-top",

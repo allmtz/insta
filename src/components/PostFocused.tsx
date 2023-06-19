@@ -11,8 +11,9 @@ import { useSelector } from "react-redux";
 import { interactionsSelector } from "../features/PostInteractions/interactionsSlice";
 import { nanoid } from "@reduxjs/toolkit";
 import { ScrollArea } from "./shadcn/scroll-area";
+import { Post } from "../tipos/types";
 
-export const PostFocused = ({ post }) => {
+export const PostFocused = ({ post }: { post: Post }) => {
   const allInteractions = useSelector(interactionsSelector);
   const postInteractions = allInteractions[post.id];
 

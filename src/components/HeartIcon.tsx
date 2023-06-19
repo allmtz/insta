@@ -4,15 +4,16 @@ import {
   interactionsSelector,
   likedPost,
 } from "../features/PostInteractions/interactionsSlice";
+import { Post } from "../tipos/types";
 
-export const HeartIcon = ({ post }) => {
+export const HeartIcon = ({ post }: { post: Post }) => {
   const dispatch = useDispatch();
   const user = useSelector(userSelector);
   const allInteractions = useSelector(interactionsSelector);
 
   const postInteractions = allInteractions[post.id];
 
-  const onLikeClick = (post) => {
+  const onLikeClick = (post: Post) => {
     dispatch(likedPost(user, post));
   };
 

@@ -1,12 +1,15 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { followEvent, userSelector } from "../features/user/userSlice";
+import { User } from "../tipos/types";
 
-export const FollowBtn = ({ user }) => {
+type FollowBtnProps = { user: User };
+
+export const FollowBtn = ({ user }: FollowBtnProps) => {
   const dispatch = useDispatch();
   const currentUser = useSelector(userSelector);
 
-  const onFollowClick = (targetUser) => {
+  const onFollowClick = (targetUser: User) => {
     dispatch(followEvent(targetUser));
   };
 

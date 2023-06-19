@@ -17,7 +17,8 @@ const ProfilePage = () => {
     <Layout>
       <Nav></Nav>
       <div className="PROFILE-LAYOUT m-auto my-5 flex h-fit w-fit flex-col gap-8">
-        <Profile user={user} />
+        {/* need to add some kind of <UserNotFound /> error handler  */}
+        {user && <Profile user={user} />}
       </div>
     </Layout>
   );

@@ -1,12 +1,13 @@
 import Image from "next/image";
 import addPost from "../assets/icons/add.svg";
 import profile from "../assets/icons/profile.svg";
-import { useState } from "react";
-import { AddPost } from "../components/AddPost";
+import { MouseEventHandler, useState } from "react";
+import { AddPost } from "./AddPost";
 import { Modal } from "./Modal";
 import Link from "next/link";
 import { useSelector } from "react-redux";
 import { userSelector } from "../features/user/userSlice";
+import React from "react";
 
 export const Nav = () => {
   const user = useSelector(userSelector);
@@ -16,8 +17,10 @@ export const Nav = () => {
     setModalIsOpen(!modalIsOpen);
   };
 
-  const onModalClick = (e) => {
-    if (e.target.classList.contains("MODAL")) {
+  const onModalClick = (e: React.MouseEvent) => {
+    const { target } = e;
+
+    if (target instanceof HTMLElement && target.classList.contains("MODAL")) {
       setModalIsOpen(!modalIsOpen);
     } else return;
   };

@@ -2,14 +2,17 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { commented } from "../features/PostInteractions/interactionsSlice";
 import { userSelector } from "../features/user/userSlice";
+import { Post } from "../tipos/types";
 
-export const AddComment = ({ post, id }) => {
+type AddCommentProps = { post: Post; id: string };
+
+export const AddComment = ({ post, id }: AddCommentProps) => {
   const dispatch = useDispatch();
   const user = useSelector(userSelector);
   const [text, setText] = useState("");
   const [showPostBtn, setShowPostBtn] = useState(false);
 
-  const onPostClick = (post) => {
+  const onPostClick = (post: Post) => {
     if (text.trim() === "") return;
 
     dispatch(commented(user, post, text));
@@ -17,7 +20,7 @@ export const AddComment = ({ post, id }) => {
     setShowPostBtn(false);
   };
 
-  const onCommentChange = (value) => {
+  const onCommentChange = (value: string) => {
     if (value.trim() !== "") {
       setShowPostBtn(true);
     } else {
