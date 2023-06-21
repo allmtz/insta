@@ -17,9 +17,7 @@ export const LikedBy = ({ post }: { post: Post }) => {
     <div key={nanoid()} className="flex items-center gap-2 p-2">
       <ProfilePic picSrc={u.profilePicSrc} size="small" />
       <p className="mr-auto">{u.handle}</p>
-
-      {/* avoid rendering a "follow" btn for the currently logged in user */}
-      {u.uuid !== user.uuid && <FollowBtn user={u} />}
+      <FollowBtn user={u} />
     </div>
   ));
 
