@@ -29,6 +29,16 @@ export const AddComment = ({ post, id }: AddCommentProps) => {
     setText(value);
   };
 
+  const handleKeydown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
+    if (e.key === "Enter" && !e.shiftKey && text.trim() != "") {
+      e.preventDefault();
+
+      dispatch(commented(user, post, text));
+      setText("");
+      setShowPostBtn(false);
+    }
+  };
+
   return (
     <div className="ADD-COMMENT flex h-full items-start">
       <textarea
@@ -36,18 +46,21 @@ export const AddComment = ({ post, id }: AddCommentProps) => {
         placeholder="Add a comment..."
         name="add-comment"
         maxLength={2200}
+        autoComplete="off"
+        autoCorrect="off"
         onChange={(e) => onCommentChange(e.target.value)}
+        onKeyDown={(e) => handleKeydown(e)}
         value={text}
         id={id}
       ></textarea>
 
       {showPostBtn && (
-        <p
+        <button
           className="cursor-pointer text-blue-500 hover:text-black"
           onClick={() => onPostClick(post)}
         >
           Post
-        </p>
+        </button>
       )}
     </div>
   );
