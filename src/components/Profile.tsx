@@ -4,6 +4,7 @@ import HorizontalDots from "./HorizontalDots";
 import { ProfilePic } from "./ProfilePic";
 
 import TEMPimg from "../assets/nature.jpg";
+import { nanoid } from "@reduxjs/toolkit";
 
 //change this to real users once they have some posts
 const mockUsers = [1, 2, 3, 4, 5, 6, 7, 8, 9];
@@ -25,11 +26,11 @@ export const Profile = ({ user }: { user: User }) => {
             <p>
               <span className="font-bold">{user.posts.length}</span> posts
             </p>
-            <p>
+            <p className="cursor-pointer">
               <span className="font-bold">{user.followers.length}</span>{" "}
               followers
             </p>
-            <p>
+            <p className="cursor-pointer">
               <span className="font-bold">{user.following.length}</span>{" "}
               following
             </p>
@@ -44,7 +45,7 @@ export const Profile = ({ user }: { user: User }) => {
         <div className="posts grid grid-cols-3 gap-1">
           {mockUsers.map((post) => (
             <>
-              <div className="PROFILE-POST relative">
+              <div key={nanoid()} className="PROFILE-POST relative">
                 <Image src={TEMPimg} height={300} width={300} alt="" />
                 <div className="OVERLAY absolute top-0 flex h-full w-full items-center justify-center bg-black bg-opacity-50 opacity-0 hover:opacity-100">
                   <div>LIKES #</div>

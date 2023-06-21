@@ -114,7 +114,10 @@ export const PostFocused = ({ post }: { post: Post }) => {
               </div>
             </div>
             <div className="POST-INFO border-b pb-2">
-              <p className="font-bold" onClick={() => handleLikesClick()}>
+              <p
+                className="cursor-pointer font-bold"
+                onClick={() => handleLikesClick()}
+              >
                 {postInteractions.likes} likes
               </p>
               <p>{moment(post.timestamp).fromNow()}</p>

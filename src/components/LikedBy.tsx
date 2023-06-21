@@ -5,6 +5,7 @@ import { userSelector } from "../features/user/userSlice";
 import { nanoid } from "@reduxjs/toolkit";
 import { interactionsSelector } from "../features/PostInteractions/interactionsSlice";
 import { FollowBtn } from "./FollowBtn";
+import { ScrollArea } from "./shadcn/scroll-area";
 
 export const LikedBy = ({ post }: { post: Post }) => {
   const user = useSelector(userSelector);
@@ -25,7 +26,7 @@ export const LikedBy = ({ post }: { post: Post }) => {
   return (
     <div className="min-w-[300px] rounded-md bg-white pb-2">
       <h2 className="border-b py-2 text-center">Likes</h2>
-      <div className="flex flex-col px-2">{displayUsersWhoLiked}</div>
+      <ScrollArea className="px-2">{displayUsersWhoLiked}</ScrollArea>
     </div>
   );
 };
