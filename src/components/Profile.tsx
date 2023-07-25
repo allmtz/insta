@@ -6,11 +6,33 @@ import { ProfilePic } from "./ProfilePic";
 import TEMPimg from "../assets/nature.jpg";
 import { nanoid } from "@reduxjs/toolkit";
 import { FollowBtn } from "./FollowBtn";
+import { useState } from "react";
+import { Modal } from "./Modal";
+import { List } from "./List";
 
-//change this to real users once they have some posts
-const mockUsers = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+//change this to real Posts
+const mockPosts = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
 export const Profile = ({ user }: { user: User }) => {
+  const [showFollowers, setShowFollowers] = useState(false);
+  const [showFollowing, setShowFollowing] = useState(false);
+
+  const onModalClick = (e: React.MouseEvent) => {
+    const { target } = e;
+
+    if (target instanceof HTMLElement && target.classList.contains("MODAL")) {
+      setShowFollowers(false);
+      setShowFollowing(false);
+    } else return;
+  };
+
+  const onFollowingClick = () => {
+    setShowFollowing(true);
+  };
+  const onFollowersClick = () => {
+    setShowFollowers(true);
+  };
+
   return (
     <>
       <header className="m-auto flex gap-20">
@@ -25,11 +47,11 @@ export const Profile = ({ user }: { user: User }) => {
             <p>
               <span className="font-bold">{user.posts.length}</span> posts
             </p>
-            <p className="cursor-pointer">
+            <p className="cursor-pointer" onClick={onFollowersClick}>
               <span className="font-bold">{user.followers.length}</span>{" "}
               followers
             </p>
-            <p className="cursor-pointer">
+            <p className="cursor-pointer" onClick={onFollowingClick}>
               <span className="font-bold">{user.following.length}</span>{" "}
               following
             </p>
@@ -42,7 +64,7 @@ export const Profile = ({ user }: { user: User }) => {
       </header>
       <main>
         <div className="posts grid grid-cols-3 gap-1">
-          {mockUsers.map((post) => (
+          {mockPosts.map((post) => (
             <>
               <div key={nanoid()} className="PROFILE-POST relative">
                 <Image src={TEMPimg} height={300} width={300} alt="" />
@@ -55,6 +77,18 @@ export const Profile = ({ user }: { user: User }) => {
           ))}
         </div>
       </main>
+
+      {showFollowers && (
+        <Modal onClick={onModalClick}>
+          <List user={user} listType="followers"></List>
+        </Modal>
+      )}
+
+      {showFollowing && (
+        <Modal onClick={onModalClick}>
+          <List user={user} listType="following"></List>
+        </Modal>
+      )}
     </>
   );
 };
