@@ -29,29 +29,10 @@ export const userSlice = createSlice({
         return { payload: post };
       },
     },
-
-    followEvent: {
-      reducer(state, action: { payload: { targetUser: User } }) {
-        const { targetUser } = action.payload;
-
-        // check if the user is already following the target user
-        const following = state.following.find(
-          (u) => u.uuid === targetUser.uuid
-        );
-
-        if (following) {
-          const idx = state.following.indexOf(following);
-          state.following.splice(idx, 1);
-        } else state.following.push(targetUser);
-      },
-      prepare(targetUser) {
-        return { payload: { targetUser } };
-      },
-    },
   },
 });
 
-export const { bookmarkedPost, followEvent } = userSlice.actions;
+export const { bookmarkedPost } = userSlice.actions;
 
 export const userSelector = (state: RootState) => state.user;
 
