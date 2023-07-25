@@ -1,5 +1,7 @@
 import { StaticImageData } from "next/image";
 
+type userID = string;
+
 export type Comment = {
   id: string;
   authorID: string;
@@ -17,8 +19,8 @@ export type User = {
   postsLiked: { [postID: string]: Post };
   postsBookmarked: { [postID: string]: Post };
   posts: Post[];
-  followers: User[];
-  following: User[];
+  followers: userID[];
+  following: userID[];
   bio: string;
 };
 
