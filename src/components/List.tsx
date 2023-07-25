@@ -5,13 +5,22 @@ import { FollowBtn } from "./FollowBtn";
 import { ProfilePic } from "./ProfilePic";
 import { User } from "../tipos/types";
 import { usersSelector } from "../features/users/usersSlice";
+import Link from "next/link";
+import { Dispatch, SetStateAction } from "react";
 
 type ListProps = {
   user: User;
   listType: "followers" | "following";
+  setShowFollowers: Dispatch<SetStateAction<boolean>>;
+  setShowFollowing: Dispatch<SetStateAction<boolean>>;
 };
 
-export const List = ({ user, listType }: ListProps) => {
+export const List = ({
+  user,
+  listType,
+  setShowFollowers,
+  setShowFollowing,
+}: ListProps) => {
   const users = useSelector(usersSelector);
 
   const allConnections = new Set(user[listType]);
@@ -22,10 +31,21 @@ export const List = ({ user, listType }: ListProps) => {
   const capitalizedListType =
     `${listType[0].toUpperCase()}` + listType.slice(1);
 
+  const closeModal = () => {
+    setShowFollowers(false);
+    setShowFollowing(false);
+  };
   const display = show.map((u) => (
     <div key={nanoid()} className="flex items-center gap-2 p-2">
-      <ProfilePic picSrc={u.profilePicSrc} size="small" />
-      <p className="mr-auto">{u.handle}</p>
+      <Link
+        href={`/profile/${u.uuid}`}
+        className="flex items-center gap-2"
+        onClick={closeModal}
+      >
+        <ProfilePic picSrc={u.profilePicSrc} size="small" />
+        <p className="mr-auto">{u.handle}</p>
+      </Link>
+
       <FollowBtn user={u} />
     </div>
   ));

@@ -80,13 +80,23 @@ export const Profile = ({ user }: { user: User }) => {
 
       {showFollowers && (
         <Modal onClick={onModalClick}>
-          <List user={user} listType="followers"></List>
+          <List
+            setShowFollowing={setShowFollowing}
+            setShowFollowers={setShowFollowers}
+            user={user}
+            listType="followers"
+          ></List>
         </Modal>
       )}
 
       {showFollowing && (
         <Modal onClick={onModalClick}>
-          <List user={user} listType="following"></List>
+          <List
+            setShowFollowing={setShowFollowing}
+            setShowFollowers={setShowFollowers}
+            user={user}
+            listType="following"
+          ></List>
         </Modal>
       )}
     </>
