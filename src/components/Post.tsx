@@ -19,6 +19,7 @@ import Link from "next/link";
 import { PostInteractionList } from "./PostInteractionList";
 import { LikedBy } from "./LikedBy";
 import { interactionsSelector } from "../features/PostInteractions/interactionsSlice";
+import { usersSelector } from "../features/users/usersSlice";
 
 const imageWidth = 320;
 const captionStyle = {
@@ -28,6 +29,7 @@ const captionStyle = {
 export const Post = ({ post }: { post: TPost }) => {
   const allInteractions = useSelector(interactionsSelector);
   const postInteractions = allInteractions[post.id];
+  const users = useSelector(usersSelector);
 
   const { comments, likes } = postInteractions;
 
@@ -55,16 +57,18 @@ export const Post = ({ post }: { post: TPost }) => {
     setShowLikedBy(true);
   };
 
-  const { id, timestamp, author, caption, imgSrc, location } = post;
+  const { id, timestamp, authorID, caption, imgSrc, location } = post;
+
+  const author = users.find((u) => u.uuid === authorID);
 
   return (
     <div className="POST flex max-w-fit flex-col gap-2 border-b">
       <header className="POST-HEADER flex justify-between gap-4">
-        <Link href={`/profile/${post.author.uuid}`} className="flex gap-2 ">
-          <ProfilePic picSrc={author.profilePicSrc} size={"small"} />
+        <Link href={`/profile/${post.authorID}`} className="flex gap-2 ">
+          <ProfilePic picSrc={author?.profilePicSrc || ""} size={"small"} />
           <div className="flex flex-col justify-center">
             <p className="">
-              <span className="font-semibold">{author.handle} </span>
+              <span className="font-semibold">{author?.handle} </span>
               <span className="text-gray-500">•</span>{" "}
               <span className="text-gray-500">{getTimeAgo(timestamp)}</span>
             </p>
@@ -113,8 +117,8 @@ export const Post = ({ post }: { post: TPost }) => {
         </p>
 
         <div>
-          <Link href={`/profile/${post.author.uuid}`} className="font-semibold">
-            {author.handle}
+          <Link href={`/profile/${authorID}`} className="font-semibold">
+            {author?.handle}
           </Link>{" "}
           {caption}
         </div>

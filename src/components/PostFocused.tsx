@@ -15,6 +15,7 @@ import { Post } from "../tipos/types";
 import Link from "next/link";
 import { LikedBy } from "./LikedBy";
 import { useState } from "react";
+import { usersSelector } from "../features/users/usersSlice";
 
 export const PostFocused = ({ post }: { post: Post }) => {
   const [showLikedBy, setShowLikedBy] = useState(false);
@@ -22,7 +23,10 @@ export const PostFocused = ({ post }: { post: Post }) => {
   const allInteractions = useSelector(interactionsSelector);
   const postInteractions = allInteractions[post.id];
 
-  const profileLink = `/profile/${post.author.uuid}`;
+  const users = useSelector(usersSelector);
+  const author = users.find((u) => u.uuid === post.authorID);
+
+  const profileLink = `/profile/${author!.uuid}`;
 
   const comments = postInteractions.comments;
   const commentsDisplayed = comments.map((comment) => (
@@ -60,12 +64,12 @@ export const PostFocused = ({ post }: { post: Post }) => {
         <div>
           <div className="flex items-center border-b p-3 text-sm">
             <Link
-              href={`/profile/${post.author.uuid}`}
+              href={`/profile/${author!.uuid}`}
               className="flex items-center gap-3"
             >
-              <ProfilePic picSrc={post.author.profilePicSrc} size="small" />
+              <ProfilePic picSrc={author!.profilePicSrc} size="small" />
               <div>
-                <p className="font-bold">{post.author.handle}</p>
+                <p className="font-bold">{author!.handle}</p>
                 <p>{post.location}</p>
               </div>
             </Link>
@@ -82,14 +86,11 @@ export const PostFocused = ({ post }: { post: Post }) => {
             <ScrollArea className=" h-[200px] w-[400px] border-b pb-2">
               <div className="CAPTION flex gap-3">
                 <Link href={profileLink}>
-                  <ProfilePic
-                    picSrc={post.author.profilePicSrc}
-                    size={"small"}
-                  />
+                  <ProfilePic picSrc={author!.profilePicSrc} size={"small"} />
                 </Link>
                 <p className="max-w-[320px]">
                   <Link href={profileLink} className="font-bold">
-                    {post.author.handle}
+                    {author!.handle}
                   </Link>{" "}
                   <span className="break-all">{post.caption}</span>
                 </p>
