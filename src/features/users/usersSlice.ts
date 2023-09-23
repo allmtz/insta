@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { User } from "../../tipos/types";
+import { Post, User } from "../../tipos/types";
 import { RootState } from "../../store";
 
 //mock users
@@ -55,10 +55,29 @@ const usersSlice = createSlice({
         };
       },
     },
+
+    // when a post is created, add it to a Users Post[]
+    assignPost: {
+      reducer(state, action: { payload: { user: User; post: Post } }) {
+        const { user, post } = action.payload;
+
+        const match = state.find((u) => u.uuid === user.uuid);
+
+        match?.posts.push(post);
+      },
+      prepare(user: User, post: Post) {
+        return {
+          payload: {
+            user,
+            post,
+          },
+        };
+      },
+    },
   },
 });
 
-export const { followEvent } = usersSlice.actions;
+export const { followEvent, assignPost } = usersSlice.actions;
 
 export const usersSelector = (state: RootState) => state.users;
 

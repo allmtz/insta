@@ -4,7 +4,7 @@ import locationIcon from "../assets/icons/location.svg";
 
 //redux
 import { useDispatch, useSelector } from "react-redux";
-import { addPost } from "../features/posts/postsSlice";
+import { createPost } from "../features/posts/postsSlice";
 import { userSelector } from "../features/user/userSlice";
 import { Dispatch, SetStateAction, useState } from "react";
 
@@ -12,6 +12,7 @@ import tempPostPicSrc from "../assets/nature.jpg";
 import { ProfilePic } from "./ProfilePic";
 import { nanoid } from "@reduxjs/toolkit";
 import { initializeInteractions } from "../features/PostInteractions/interactionsSlice";
+import { assignPost } from "../features/users/usersSlice";
 
 export const AddPost = ({
   setModalIsOpen,
@@ -37,8 +38,13 @@ export const AddPost = ({
     if (caption.trim() && location.trim()) {
       const id = nanoid();
 
-      dispatch(addPost(id, user, caption, location, tempPostPicSrc));
+      const postCreated = dispatch(
+        createPost(id, user.uuid, caption, location, tempPostPicSrc)
+      );
+
       dispatch(initializeInteractions(id));
+
+      dispatch(assignPost(user, postCreated.payload));
 
       setModalIsOpen(false);
     }

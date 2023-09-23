@@ -13,7 +13,7 @@ export const postsSlice = createSlice({
   name: "posts",
   initialState,
   reducers: {
-    addPost: {
+    createPost: {
       reducer(state, action: PayloadAction<Post>) {
         state.push(action.payload);
       },
@@ -39,7 +39,7 @@ export const postsSlice = createSlice({
   },
 });
 
-export const { addPost } = postsSlice.actions;
+export const { createPost } = postsSlice.actions;
 
 export const postsSelector = (state: RootState) => state.posts;
 
