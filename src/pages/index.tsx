@@ -13,7 +13,7 @@ const IndexPage: NextPage = () => {
   return (
     <>
       <Head>
-        <title>Redux Toolkit</title>
+        <title>Insta Clone</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Layout>
