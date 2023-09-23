@@ -5,7 +5,7 @@ import img from "./assets/nature.jpg";
 import pier from "./assets/pier.jpg";
 
 const mike: User = {
-  uuid: "20",
+  uuid: "2",
   handle: "machoman",
   name: "Mike Michaels",
   bio: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit rerum laudantium dolore. Commodi temporibus saepe animi",
@@ -31,7 +31,7 @@ const john: User = {
 };
 
 export const johnsPost: Post = {
-  author: john,
+  authorID: "1",
   id: "johnsPost",
   timestamp: "2023-06-13T06:14:00+0000",
   location: "Oceanside, California",
@@ -40,7 +40,7 @@ export const johnsPost: Post = {
 };
 
 export const mikesPost: Post = {
-  author: mike,
+  authorID: "2",
   id: "mikesPost",
   timestamp: "2023-06-09T04:00:00.977Z",
   location: "San Francisco, California",

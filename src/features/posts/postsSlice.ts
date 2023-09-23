@@ -19,7 +19,7 @@ export const postsSlice = createSlice({
       },
       prepare(
         id: string,
-        author: User,
+        authorID: string,
         caption: string,
         location: string,
         imgSrc: string | StaticImageData
@@ -28,7 +28,7 @@ export const postsSlice = createSlice({
           payload: {
             id,
             timestamp: new Date().toISOString(),
-            author,
+            authorID,
             caption,
             location,
             imgSrc,
