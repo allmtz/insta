@@ -5,11 +5,12 @@ import { MouseEventHandler, useState } from "react";
 import { AddPost } from "./AddPost";
 import { Modal } from "./Modal";
 import Link from "next/link";
-import { useSelector } from "react-redux";
-import { userSelector } from "../features/user/userSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { userSelector, switchUser } from "../features/user/userSlice";
 import React from "react";
 
 export const Nav = () => {
+  const dispatch = useDispatch();
   const user = useSelector(userSelector);
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
@@ -43,6 +44,13 @@ export const Nav = () => {
             </Link>
           </li>
         </ul>
+        <p className="w-32">Current user: {user.name}</p>
+        <button
+          onClick={() => dispatch(switchUser())}
+          className="mt-2 border-2 border-black p-1 hover:bg-gray-400"
+        >
+          Switch User
+        </button>
       </nav>
 
       {modalIsOpen && (
