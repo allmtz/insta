@@ -22,7 +22,7 @@ export const PostInteractionList = ({ post }: { post: Post }) => {
       </li>
       <li
         className="w-full cursor-pointer py-2 text-center"
-        onClick={() => router.push(`/profile/${post.author.uuid}`)}
+        onClick={() => router.push(`/profile/${post.authorID}`)}
       >
         Go to account
       </li>
