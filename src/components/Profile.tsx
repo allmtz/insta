@@ -10,6 +10,15 @@ import { useState } from "react";
 import { Modal } from "./Modal";
 import { List } from "./List";
 
+import whiteHeart from "../assets/icons/white-heart.svg";
+import whiteComment from "../assets/icons/white-comment.svg";
+
+// these are all the mock users` posts
+import { initialPosts } from "../mockData";
+
+// util
+import { getInteractions } from "../features/PostInteractions/getInteractions";
+
 //change this to real Posts
 const mockPosts = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
@@ -64,13 +73,18 @@ export const Profile = ({ user }: { user: User }) => {
       </header>
       <main>
         <div className="posts grid grid-cols-3 gap-1">
-          {mockPosts.map((post) => (
+          {initialPosts.map((post) => (
             <>
               <div key={nanoid()} className="PROFILE-POST relative">
-                <Image src={TEMPimg} height={300} width={300} alt="" />
+                <Image src={post.imgSrc} height={300} width={300} alt="" />
                 <div className="OVERLAY absolute top-0 flex h-full w-full items-center justify-center bg-black bg-opacity-50 opacity-0 hover:opacity-100">
-                  <div>LIKES #</div>
-                  <div>COMMENTS #</div>
+                  <div className="flex gap-2 text-xl text-white">
+                    <Image src={whiteHeart} alt=""></Image>
+                    <p>{getInteractions(post.id).likes}</p>
+
+                    <Image src={whiteComment} alt="" className="ml-5"></Image>
+                    <p>{getInteractions(post.id).comments.length}</p>
+                  </div>
                 </div>
               </div>
             </>
