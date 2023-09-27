@@ -15,7 +15,7 @@ import { Post } from "../tipos/types";
 import Link from "next/link";
 import { LikedBy } from "./LikedBy";
 import { useState } from "react";
-import { usersSelector } from "../features/users/usersSlice";
+import { findUser } from "../features/users/findUser";
 
 export const PostFocused = ({ post }: { post: Post }) => {
   const [showLikedBy, setShowLikedBy] = useState(false);
@@ -23,8 +23,8 @@ export const PostFocused = ({ post }: { post: Post }) => {
   const allInteractions = useSelector(interactionsSelector);
   const postInteractions = allInteractions[post.id];
 
-  const users = useSelector(usersSelector);
-  const author = users.find((u) => u.uuid === post.authorID);
+  // NOTE: not handling the case of author being undefined
+  const author = findUser(post.authorID);
 
   const profileLink = `/profile/${author!.uuid}`;
 
