@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { User } from "../tipos/types";
+import { Post, User } from "../tipos/types";
 import HorizontalDots from "./HorizontalDots";
 import { ProfilePic } from "./ProfilePic";
 
@@ -18,20 +18,32 @@ import { initialPosts } from "../mockData";
 
 // util
 import { getInteractions } from "../features/PostInteractions/getInteractions";
+import { PostFocused } from "./PostFocused";
+import {
+  closeModal,
+  modalSelector,
+  openModal,
+} from "../features/modal/modalSlice";
+import { useDispatch, useSelector } from "react-redux";
 
 //change this to real Posts
 const mockPosts = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
 export const Profile = ({ user }: { user: User }) => {
+  const dispatch = useDispatch();
+  const modal = useSelector(modalSelector);
+
   const [showFollowers, setShowFollowers] = useState(false);
   const [showFollowing, setShowFollowing] = useState(false);
+  const [focusedPost, setFocusedPost] = useState<Post | undefined>();
 
   const onModalClick = (e: React.MouseEvent) => {
     const { target } = e;
-
+    // Move this check to the modal slice?
     if (target instanceof HTMLElement && target.classList.contains("MODAL")) {
       setShowFollowers(false);
       setShowFollowing(false);
+      dispatch(closeModal());
     } else return;
   };
 
@@ -40,6 +52,11 @@ export const Profile = ({ user }: { user: User }) => {
   };
   const onFollowersClick = () => {
     setShowFollowers(true);
+  };
+
+  const onPostClick = (post: Post) => {
+    setFocusedPost(post);
+    dispatch(openModal());
   };
 
   return (
@@ -75,7 +92,11 @@ export const Profile = ({ user }: { user: User }) => {
         <div className="posts grid grid-cols-3 gap-1">
           {initialPosts.map((post) => (
             <>
-              <div key={nanoid()} className="PROFILE-POST relative">
+              <div
+                onClick={() => onPostClick(post)}
+                key={nanoid()}
+                className="PROFILE-POST relative"
+              >
                 <Image src={post.imgSrc} height={300} width={300} alt="" />
                 <div className="OVERLAY absolute top-0 flex h-full w-full items-center justify-center bg-black bg-opacity-50 opacity-0 hover:opacity-100">
                   <div className="flex gap-2 text-xl text-white">
@@ -91,6 +112,12 @@ export const Profile = ({ user }: { user: User }) => {
           ))}
         </div>
       </main>
+
+      {modal.showModal && (
+        <Modal onClick={onModalClick}>
+          <PostFocused post={focusedPost!} />
+        </Modal>
+      )}
 
       {showFollowers && (
         <Modal onClick={onModalClick}>
