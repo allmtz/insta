@@ -1,6 +1,5 @@
 import Image from "next/image";
 import { Post, User } from "../tipos/types";
-import HorizontalDots from "./HorizontalDots";
 import { ProfilePic } from "./ProfilePic";
 
 import TEMPimg from "../assets/nature.jpg";
@@ -67,7 +66,6 @@ export const Profile = ({ user }: { user: User }) => {
           <div className="INTERACTIONS flex items-center gap-7">
             <p className="font-bold">{user.handle}</p>
             <FollowBtn user={user} />
-            <HorizontalDots />
           </div>
           <div className="INFO mt-2 flex gap-4">
             <p>
@@ -95,7 +93,7 @@ export const Profile = ({ user }: { user: User }) => {
               <div
                 onClick={() => onPostClick(post)}
                 key={nanoid()}
-                className="PROFILE-POST relative"
+                className="PROFILE-POST relative cursor-pointer"
               >
                 <Image src={post.imgSrc} height={300} width={300} alt="" />
                 <div className="OVERLAY absolute top-0 flex h-full w-full items-center justify-center bg-black bg-opacity-50 opacity-0 hover:opacity-100">
