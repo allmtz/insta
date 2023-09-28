@@ -4,6 +4,7 @@ import { postsReducer } from "./features/posts/postsSlice";
 import { userReducer } from "./features/user/userSlice";
 import { usersReducer } from "./features/users/usersSlice";
 import { interactionsSliceReducer } from "./features/PostInteractions/interactionsSlice";
+import { modalReducer } from "./features/modal/modalSlice";
 
 export function makeStore() {
   return configureStore({
@@ -12,6 +13,7 @@ export function makeStore() {
       interactions: interactionsSliceReducer,
       user: userReducer,
       users: usersReducer,
+      modal: modalReducer,
     },
   });
 }
