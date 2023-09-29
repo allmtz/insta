@@ -8,11 +8,12 @@ import { createPost } from "../features/posts/postsSlice";
 import { userSelector } from "../features/user/userSlice";
 import { Dispatch, SetStateAction, useState } from "react";
 
-import tempPostPicSrc from "../assets/nature.jpg";
 import { ProfilePic } from "./ProfilePic";
 import { nanoid } from "@reduxjs/toolkit";
 import { initializeInteractions } from "../features/PostInteractions/interactionsSlice";
 import { assignPost } from "../features/users/usersSlice";
+
+import useSWR from "swr";
 
 export const AddPost = ({
   setModalIsOpen,
@@ -24,6 +25,11 @@ export const AddPost = ({
   const [caption, setCaption] = useState("");
   const [captionLength, setCaptionLength] = useState(0);
   const [location, setLocation] = useState("");
+
+  const fetcher = async () => {
+    return await fetch("https://picsum.photos/320/300");
+  };
+  const { data, error, isLoading, isValidating } = useSWR("/api/user", fetcher);
 
   const onCaptionChange = (value: string) => {
     setCaption(value);
@@ -39,7 +45,7 @@ export const AddPost = ({
       const id = nanoid();
 
       const postCreated = dispatch(
-        createPost(id, user.uuid, caption, location, tempPostPicSrc)
+        createPost(id, user.uuid, caption, location, data!.url)
       );
 
       dispatch(initializeInteractions(id));
@@ -49,6 +55,7 @@ export const AddPost = ({
       setModalIsOpen(false);
     }
   };
+
   return (
     <div className="flex flex-col rounded-2xl bg-white">
       <header className="flex items-center justify-between border-b-2 p-2">
@@ -69,12 +76,10 @@ export const AddPost = ({
       </header>
 
       <div className="flex">
-        <Image
-          src="https://picsum.photos/320/300"
-          height={400}
-          width={500}
-          alt=""
-        ></Image>
+        <div className="relative flex h-[468.75px] w-[500px] items-center justify-center">
+          {isValidating && <h1>Loading...</h1>}
+          {!isValidating && data && <Image src={data.url} fill alt=""></Image>}
+        </div>
         <section className="POST-INFO mt-4">
           <div className="flex items-center gap-2 p-2 ">
             <ProfilePic picSrc={user.profilePicSrc} size={"small"} />
