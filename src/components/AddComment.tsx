@@ -54,14 +54,16 @@ export const AddComment = ({ post, id }: AddCommentProps) => {
         id={id}
       ></textarea>
 
-      {showPostBtn && (
-        <button
-          className="cursor-pointer text-blue-500 hover:text-black"
-          onClick={() => onPostClick(post)}
-        >
-          Post
-        </button>
-      )}
+      <button
+        className={
+          showPostBtn
+            ? "cursor-pointer text-blue-500 hover:text-black"
+            : "cursor-default text-transparent hover:text-transparent"
+        }
+        onClick={() => onPostClick(post)}
+      >
+        Post
+      </button>
     </div>
   );
 };
