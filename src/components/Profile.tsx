@@ -2,7 +2,6 @@ import Image from "next/image";
 import { Post, User } from "../tipos/types";
 import { ProfilePic } from "./ProfilePic";
 
-import TEMPimg from "../assets/nature.jpg";
 import { nanoid } from "@reduxjs/toolkit";
 import { FollowBtn } from "./FollowBtn";
 import { useState } from "react";
@@ -12,11 +11,6 @@ import { List } from "./List";
 import whiteHeart from "../assets/icons/white-heart.svg";
 import whiteComment from "../assets/icons/white-comment.svg";
 
-// these are all the mock users` posts
-import { initialPosts } from "../mockData";
-
-// util
-import { getInteractions } from "../features/PostInteractions/getInteractions";
 import { PostFocused } from "./PostFocused";
 import {
   closeModal,
@@ -24,13 +18,12 @@ import {
   openModal,
 } from "../features/modal/modalSlice";
 import { useDispatch, useSelector } from "react-redux";
-
-//change this to real Posts
-const mockPosts = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+import { useGetInteractions } from "../features/PostInteractions/getInteractions";
 
 export const Profile = ({ user }: { user: User }) => {
   const dispatch = useDispatch();
   const modal = useSelector(modalSelector);
+  const allInteractions = useGetInteractions();
 
   const [showFollowers, setShowFollowers] = useState(false);
   const [showFollowing, setShowFollowing] = useState(false);
@@ -88,7 +81,7 @@ export const Profile = ({ user }: { user: User }) => {
       </header>
       <main>
         <div className="posts grid grid-cols-3 gap-1">
-          {initialPosts.map((post) => (
+          {user.posts.map((post) => (
             <>
               <div
                 onClick={() => onPostClick(post)}
@@ -99,10 +92,10 @@ export const Profile = ({ user }: { user: User }) => {
                 <div className="OVERLAY absolute top-0 flex h-full w-full items-center justify-center bg-black bg-opacity-50 opacity-0 hover:opacity-100">
                   <div className="flex gap-2 text-xl text-white">
                     <Image src={whiteHeart} alt=""></Image>
-                    <p>{getInteractions(post.id).likes}</p>
+                    <p>{post && allInteractions[post.id].likedBy.length}</p>
 
                     <Image src={whiteComment} alt="" className="ml-5"></Image>
-                    <p>{getInteractions(post.id).comments.length}</p>
+                    <p>{post && allInteractions[post.id].comments.length}</p>
                   </div>
                 </div>
               </div>
