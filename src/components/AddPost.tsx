@@ -41,7 +41,7 @@ export const AddPost = ({
   };
 
   const onShareClick = () => {
-    if (caption.trim() && location.trim()) {
+    if (caption.trim()) {
       const id = nanoid();
 
       const postCreated = dispatch(
@@ -88,6 +88,7 @@ export const AddPost = ({
           <textarea
             className="mt-2 min-h-[200px] w-[300px] resize-none px-2 outline-none placeholder:text-gray-300"
             placeholder="Write a caption..."
+            maxLength={2200}
             onChange={(e) => onCaptionChange(e.target.value)}
           />
           <p className="ml-auto border-b-2 pb-2 pr-2 text-right text-sm text-gray-300">
@@ -98,7 +99,7 @@ export const AddPost = ({
               className="w-full pl-2 outline-none"
               id="location"
               type="text"
-              maxLength={2200}
+              maxLength={50}
               placeholder="Add location"
               onChange={(e) => onLocationChange(e.target.value)}
             />
