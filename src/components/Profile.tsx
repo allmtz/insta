@@ -1,29 +1,27 @@
-import Image from "next/image";
 import { Post, User } from "../tipos/types";
 import { ProfilePic } from "./ProfilePic";
 
-import { nanoid } from "@reduxjs/toolkit";
 import { FollowBtn } from "./FollowBtn";
 import { useState } from "react";
 import { Modal } from "./Modal";
 import { List } from "./List";
 
-import whiteHeart from "../assets/icons/white-heart.svg";
-import whiteComment from "../assets/icons/white-comment.svg";
-
 import { PostFocused } from "./PostFocused";
-import {
-  closeModal,
-  modalSelector,
-  openModal,
-} from "../features/modal/modalSlice";
+import { closeModal, modalSelector } from "../features/modal/modalSlice";
 import { useDispatch, useSelector } from "react-redux";
-import { useGetInteractions } from "../features/PostInteractions/getInteractions";
+import { useCurrentUser } from "../features/user/useCurrentUser";
+import { ProfilePostDisplay } from "./ProfilePostDisplay";
 
 export const Profile = ({ user }: { user: User }) => {
   const dispatch = useDispatch();
   const modal = useSelector(modalSelector);
-  const allInteractions = useGetInteractions();
+
+  const currUser = useCurrentUser();
+
+  const bookmarkedPosts = Object.values(currUser.postsBookmarked);
+  const viewingOwnProfile = currUser.uuid === user.uuid;
+
+  const [display, setDisplay] = useState<"user" | "saved">("user");
 
   const [showFollowers, setShowFollowers] = useState(false);
   const [showFollowing, setShowFollowing] = useState(false);
@@ -46,14 +44,9 @@ export const Profile = ({ user }: { user: User }) => {
     setShowFollowers(true);
   };
 
-  const onPostClick = (post: Post) => {
-    setFocusedPost(post);
-    dispatch(openModal());
-  };
-
   return (
     <>
-      <header className="m-auto flex gap-20">
+      <header className="m-auto flex gap-20 border-b-2 pb-14">
         <ProfilePic picSrc={user.profilePicSrc} size="large" />
         <div>
           <div className="INTERACTIONS flex items-center gap-7">
@@ -79,29 +72,40 @@ export const Profile = ({ user }: { user: User }) => {
           </div>
         </div>
       </header>
-      <main>
-        <div className="posts grid grid-cols-3 gap-1">
-          {user.posts.map((post) => (
-            <>
-              <div
-                onClick={() => onPostClick(post)}
-                key={nanoid()}
-                className="PROFILE-POST relative cursor-pointer"
-              >
-                <Image src={post.imgSrc} height={300} width={300} alt="" />
-                <div className="OVERLAY absolute top-0 flex h-full w-full items-center justify-center bg-black bg-opacity-50 opacity-0 hover:opacity-100">
-                  <div className="flex gap-2 text-xl text-white">
-                    <Image src={whiteHeart} alt=""></Image>
-                    <p>{post && allInteractions[post.id].likedBy.length}</p>
+      <div className="mx-auto flex gap-8 text-lg uppercase tracking-wider text-slate-300">
+        {viewingOwnProfile ? (
+          <>
+            <p
+              className={
+                display === "user"
+                  ? "cursor-pointer text-black"
+                  : "cursor-pointer"
+              }
+              onClick={() => setDisplay("user")}
+            >
+              Posts
+            </p>
+            <p
+              className={
+                display === "saved"
+                  ? "cursor-pointer text-black"
+                  : "cursor-pointer"
+              }
+              onClick={() => setDisplay("saved")}
+            >
+              Saved
+            </p>
+          </>
+        ) : (
+          <p className="cursor-pointer text-black">Posts</p>
+        )}
+      </div>
 
-                    <Image src={whiteComment} alt="" className="ml-5"></Image>
-                    <p>{post && allInteractions[post.id].comments.length}</p>
-                  </div>
-                </div>
-              </div>
-            </>
-          ))}
-        </div>
+      <main>
+        <ProfilePostDisplay
+          posts={display === "user" ? user.posts : bookmarkedPosts}
+          setFocusedPost={setFocusedPost}
+        />
       </main>
 
       {modal.showModal && (
