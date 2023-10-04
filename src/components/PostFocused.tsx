@@ -1,5 +1,4 @@
 import Image from "next/image";
-import hdots from "../assets/icons/hdots.svg";
 import { ProfilePic } from "./ProfilePic";
 import { HeartIcon } from "./HeartIcon";
 import { BookmarkIcon } from "./BookmarkIcon";
@@ -73,13 +72,6 @@ export const PostFocused = ({ post }: { post: Post }) => {
                 <p>{post.location}</p>
               </div>
             </Link>
-            <Image
-              className="ml-auto"
-              src={hdots}
-              height={25}
-              width={25}
-              alt="options"
-            />
           </div>
 
           <section className="CONTENT flex min-w-[300px] max-w-lg flex-col gap-2 p-3 text-sm">
