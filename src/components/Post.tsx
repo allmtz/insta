@@ -57,14 +57,22 @@ export const Post = ({ post }: { post: TPost }) => {
     setShowLikedBy(true);
   };
 
-  const { id, timestamp, authorID, caption, imgSrc, location } = post;
+  const {
+    id,
+    timestamp,
+    author: handle,
+    authorID,
+    caption,
+    imgSrc,
+    location,
+  } = post;
 
   const author = users.find((u) => u.uuid === authorID);
 
   return (
     <div className="POST flex flex-col gap-2 border-b">
       <header className="POST-HEADER flex justify-between gap-4">
-        <Link href={`/profile/${post.authorID}`} className="flex gap-2 ">
+        <Link href={`/profile/${handle}`} className="flex gap-2 ">
           <ProfilePic picSrc={author?.profilePicSrc || ""} size={"small"} />
           <div className="flex flex-col justify-center">
             <p className="">
@@ -117,7 +125,7 @@ export const Post = ({ post }: { post: TPost }) => {
         </p>
 
         <div>
-          <Link href={`/profile/${authorID}`} className="font-semibold">
+          <Link href={`/profile/${handle}`} className="font-semibold">
             {author?.handle}
           </Link>{" "}
           {caption}

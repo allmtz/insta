@@ -38,7 +38,7 @@ export const Nav = () => {
             <span>Create</span>
           </li>
           <li>
-            <Link href={`/profile/${user.uuid}`} className="flex gap-2">
+            <Link href={`/profile/${user.handle}`} className="flex gap-2">
               <Image src={profile} width={25} height={25} alt=""></Image>
               <div>Profile</div>
             </Link>

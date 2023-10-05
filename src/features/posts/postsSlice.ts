@@ -19,6 +19,7 @@ export const postsSlice = createSlice({
       },
       prepare(
         id: string,
+        author: string,
         authorID: string,
         caption: string,
         location: string,
@@ -28,6 +29,7 @@ export const postsSlice = createSlice({
           payload: {
             id,
             timestamp: new Date().toISOString(),
+            author,
             authorID,
             caption,
             location,

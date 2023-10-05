@@ -45,7 +45,7 @@ export const AddPost = ({
       const id = nanoid();
 
       const postCreated = dispatch(
-        createPost(id, user.uuid, caption, location, data!.url)
+        createPost(id, user.handle, user.uuid, caption, location, data!.url)
       );
 
       dispatch(initializeInteractions(id));

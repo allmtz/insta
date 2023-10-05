@@ -7,11 +7,11 @@ import { usersSelector } from "../../features/users/usersSlice";
 
 const ProfilePage = () => {
   const router = useRouter();
-  const userID = router.query.userID;
+  const username = router.query.username;
 
   const users = useSelector(usersSelector);
 
-  const user = users.find((u) => u.uuid === userID);
+  const user = users.find((u) => u.handle === username);
 
   return (
     <Layout>

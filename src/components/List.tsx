@@ -38,7 +38,7 @@ export const List = ({
   const display = show.map((u) => (
     <div key={nanoid()} className="flex items-center gap-2 p-2">
       <Link
-        href={`/profile/${u.uuid}`}
+        href={`/profile/${u.handle}`}
         className="flex items-center gap-2"
         onClick={closeModal}
       >

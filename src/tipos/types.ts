@@ -27,6 +27,7 @@ export type User = {
 export type Post = {
   id: string;
   timestamp: string;
+  author: string;
   authorID: userID;
   caption: string;
   imgSrc: string | StaticImageData;

@@ -33,6 +33,7 @@ const john: User = {
 export const johnsPost: Post = {
   authorID: "1",
   id: "johnsPost",
+  author: "johnthedon",
   timestamp: "2023-06-13T06:14:00+0000",
   location: "Oceanside, California",
   caption: "try Hodad's",
@@ -42,6 +43,7 @@ export const johnsPost: Post = {
 export const mikesPost: Post = {
   authorID: "2",
   id: "mikesPost",
+  author: "machoman",
   timestamp: "2023-06-09T04:00:00.977Z",
   location: "San Francisco, California",
   caption:
