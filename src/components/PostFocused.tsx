@@ -2,7 +2,7 @@ import Image from "next/image";
 import { ProfilePic } from "./ProfilePic";
 import { HeartIcon } from "./HeartIcon";
 import { BookmarkIcon } from "./BookmarkIcon";
-import { AddComment } from "./AddComment";
+import { AddComment, linkifyOptions } from "./AddComment";
 import moment from "moment";
 
 import commentIcon from "../assets/icons/comment.svg";
@@ -15,6 +15,7 @@ import Link from "next/link";
 import { LikedBy } from "./LikedBy";
 import { useState } from "react";
 import { findUser } from "../features/users/findUser";
+import Linkify from "linkify-react";
 
 export const PostFocused = ({ post }: { post: Post }) => {
   const [showLikedBy, setShowLikedBy] = useState(false);
@@ -87,7 +88,7 @@ export const PostFocused = ({ post }: { post: Post }) => {
                   <span className="break-all">{post.caption}</span>
                 </p>
               </div>
-              {commentsDisplayed}
+              <Linkify options={linkifyOptions}>{commentsDisplayed}</Linkify>
             </ScrollArea>
 
             <div className="INTERACTIONS HERE mt-2 flex items-center gap-4">

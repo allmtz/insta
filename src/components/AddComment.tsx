@@ -3,8 +3,20 @@ import { useDispatch, useSelector } from "react-redux";
 import { commented } from "../features/PostInteractions/interactionsSlice";
 import { userSelector } from "../features/user/userSlice";
 import { Post } from "../tipos/types";
+import "linkify-plugin-mention";
 
 type AddCommentProps = { post: Post; id: string };
+
+export const linkifyOptions = {
+  className: "text-blue-500",
+  attributes: { target: { url: "_blank" } },
+  formatHref: (href: string, type: string) => {
+    const handle = href.substring(1);
+    const link = `/profile/${handle}`;
+
+    return link;
+  },
+};
 
 export const AddComment = ({ post, id }: AddCommentProps) => {
   const dispatch = useDispatch();
