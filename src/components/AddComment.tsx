@@ -90,9 +90,9 @@ export const AddComment = ({ post, id }: AddCommentProps) => {
   };
 
   return (
-    <div className="ADD-COMMENT flex h-full items-start">
+    <div className="ADD-COMMENT relative flex items-start">
       <textarea
-        className="h-full w-full resize-none outline-none placeholder:text-gray-500"
+        className="flex-grow resize-none outline-none placeholder:text-gray-500"
         placeholder="Add a comment..."
         name="add-comment"
         maxLength={2200}
@@ -106,7 +106,7 @@ export const AddComment = ({ post, id }: AddCommentProps) => {
       ></textarea>
 
       {suggestions && suggestions.length > 0 && (
-        <div className="flex flex-col gap-4 border-2 bg-white p-2 shadow">
+        <div className="absolute -top-[150%] left-0 flex flex-col gap-4 border-2 bg-white p-2 shadow">
           {suggestions.map((u) => (
             <div
               className="z-50 flex cursor-pointer items-center gap-2"

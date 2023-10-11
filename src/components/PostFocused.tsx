@@ -116,7 +116,7 @@ export const PostFocused = ({ post }: { post: Post }) => {
               </p>
               <p>{moment(post.timestamp).fromNow()}</p>
             </div>
-            <div className="COMMENT h-[80px] ">
+            <div className="COMMENT">
               <AddComment post={post} id={"comment"} />
             </div>
           </section>
