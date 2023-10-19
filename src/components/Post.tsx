@@ -93,13 +93,14 @@ export const Post = ({ post }: { post: TPost }) => {
           className="cursor-pointer"
         ></Image>
       </header>
-      <Image
-        className="POST-PIC h-auto w-auto rounded-sm"
-        src={imgSrc}
-        height={320}
-        width={imageWidth}
-        alt=""
-      ></Image>
+      <div className="relative h-[300px] w-[320px]">
+        <Image
+          className="POST-PIC rounded-sm object-cover"
+          src={imgSrc}
+          fill
+          alt=""
+        ></Image>
+      </div>
       <div className="POST-INTERACTIONS flex justify-between ">
         <div className="flex items-center gap-2 ">
           <HeartIcon post={post} />
