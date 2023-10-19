@@ -3,10 +3,10 @@ import { Post, User } from "../../tipos/types";
 import { RootState } from "../../store";
 
 //mock users
-import { john, mike } from "../../mockData";
+import { mockUsers } from "../../mockData";
 
 //normalize this for faster lookup?
-const initialState: User[] = [john, mike];
+const initialState: User[] = mockUsers;
 
 const usersSlice = createSlice({
   name: "users",

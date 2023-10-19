@@ -2,12 +2,11 @@ import { createSlice } from "@reduxjs/toolkit";
 
 import { RootState } from "../../store";
 import { User, Post } from "../../tipos/types";
-
-import { john, mike } from "../../mockData";
+import { mockUsers } from "../../mockData";
 
 type PostBookmarkedAction = { payload: Post };
 
-const initialState: { currentUser: User } = { currentUser: john };
+const initialState: { currentUser: User } = { currentUser: mockUsers[1] };
 
 export const userSlice = createSlice({
   name: "user",
@@ -32,9 +31,9 @@ export const userSlice = createSlice({
 
     switchUser: (state) => {
       if (state.currentUser.uuid === "1") {
-        state.currentUser = mike;
+        state.currentUser = mockUsers[1];
       } else {
-        state.currentUser = john;
+        state.currentUser = mockUsers[0];
       }
     },
   },

@@ -2,9 +2,6 @@ import { createSlice, nanoid } from "@reduxjs/toolkit";
 import { Comment, User, Post } from "../../tipos/types";
 import { RootState } from "../../store";
 
-import { john, mike } from "../../mockData";
-import { johnsPost, mikesPost } from "../../mockData";
-
 type CommentedAction = {
   payload: { postID: string; comment: Comment };
 };
@@ -20,15 +17,40 @@ type interactionsState = {
 };
 
 const initialState: interactionsState = {
-  [johnsPost.id]: {
+  johnsPost: {
     comments: [],
-    likes: 2,
-    likedBy: [john, mike],
+    likes: 0,
+    likedBy: [],
   },
-  [mikesPost.id]: {
+  johnsPost2: {
     comments: [],
-    likes: 2,
-    likedBy: [john, mike],
+    likes: 0,
+    likedBy: [],
+  },
+  johnsPost3: {
+    comments: [],
+    likes: 0,
+    likedBy: [],
+  },
+  johnsPost4: {
+    comments: [],
+    likes: 0,
+    likedBy: [],
+  },
+  mikesPost: {
+    comments: [],
+    likes: 0,
+    likedBy: [],
+  },
+  jackiePost: {
+    comments: [],
+    likes: 0,
+    likedBy: [],
+  },
+  jackiePost2: {
+    comments: [],
+    likes: 0,
+    likedBy: [],
   },
 };
 

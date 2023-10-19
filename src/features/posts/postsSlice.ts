@@ -1,13 +1,13 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 import { RootState } from "../../store";
-import { User, Post } from "../../tipos/types";
+import { Post } from "../../tipos/types";
 import { StaticImageData } from "next/image";
-import { initialPosts } from "../../mockData";
+import { mockPosts } from "../../mockData";
 
 type PostsState = Post[];
 
-const initialState: PostsState = initialPosts;
+const initialState: PostsState = mockPosts;
 
 export const postsSlice = createSlice({
   name: "posts",
