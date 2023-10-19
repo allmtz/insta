@@ -7,7 +7,9 @@ export const Feed = () => {
   const posts = useSelector(postsSelector);
 
   // order the posts newest to oldest
-  const sortedPosts = [...posts].reverse();
+  const sortedPosts = [...posts].sort((a, b) => {
+    return new Date(a.timestamp) > new Date(b.timestamp) ? -1 : 1;
+  });
 
   const postsDisplayed = sortedPosts.map((post) => (
     <Post post={post} key={nanoid()} />
