@@ -1,10 +1,10 @@
-import profilePicSrc from "./assets/profle.jpg";
-import johnPic from "./assets/john.jpg";
+import profilePicSrc from "./assets/profile/mike.jpg";
+import johnPic from "./assets/profile/john.jpg";
 import { Post, User } from "./tipos/types";
-import defaultProfilePic from "./assets/default.jpeg";
-import jackie from "./assets/jackie.jpeg";
-import basketBall from "./assets/bball.jpg";
-import hoop from "./assets/hoop.jpg";
+import defaultProfilePic from "./assets/profile/default.jpeg";
+import jackie from "./assets/profile/jackie.jpeg";
+import basketBall from "./assets/posts/bball.jpg";
+import hoop from "./assets/posts/hoop.jpg";
 
 export const mockPosts: Post[] = [
   {
