@@ -47,7 +47,7 @@ export const Profile = ({ user }: { user: User }) => {
   return (
     <>
       <header className="m-auto flex gap-20 border-b-2 pb-14">
-        <ProfilePic picSrc={user.profilePicSrc} size="large" />
+        <ProfilePic picSrc={user.profilePicSrc} size="lg" />
         <div>
           <div className="INTERACTIONS flex items-center gap-7">
             <p className="font-bold">{user.handle}</p>

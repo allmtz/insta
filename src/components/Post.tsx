@@ -73,7 +73,7 @@ export const Post = ({ post }: { post: TPost }) => {
     <div className="POST flex flex-col gap-2 border-b">
       <header className="POST-HEADER flex justify-between gap-4">
         <Link href={`/profile/${handle}`} className="flex gap-2 ">
-          <ProfilePic picSrc={author?.profilePicSrc || ""} size={"small"} />
+          <ProfilePic picSrc={author?.profilePicSrc || ""} size={"sm"} />
           <div className="flex flex-col justify-center">
             <p className="">
               <span className="font-semibold">{author?.handle} </span>

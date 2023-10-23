@@ -32,7 +32,7 @@ export const PostFocused = ({ post }: { post: Post }) => {
   const commentsDisplayed = comments.map((comment) => (
     <div key={nanoid()} className="items-top mt-2 flex gap-3 text-sm">
       <Link href={`/profile/${comment.authorID}`}>
-        <ProfilePic picSrc={comment.authorProfilePicSrc} size={"small"} />
+        <ProfilePic picSrc={comment.authorProfilePicSrc} size={"sm"} />
       </Link>
       <p className="max-w-[320px]">
         <Link href={`/profile/${comment.authorID}`}>
@@ -67,7 +67,7 @@ export const PostFocused = ({ post }: { post: Post }) => {
               href={`/profile/${author!.uuid}`}
               className="flex items-center gap-3"
             >
-              <ProfilePic picSrc={author!.profilePicSrc} size="small" />
+              <ProfilePic picSrc={author!.profilePicSrc} size="sm" />
               <div>
                 <p className="font-bold">{author!.handle}</p>
                 <p>{post.location}</p>
@@ -79,7 +79,7 @@ export const PostFocused = ({ post }: { post: Post }) => {
             <ScrollArea className=" h-[200px] w-[400px] border-b pb-2">
               <div className="CAPTION flex gap-3">
                 <Link href={profileLink}>
-                  <ProfilePic picSrc={author!.profilePicSrc} size={"small"} />
+                  <ProfilePic picSrc={author!.profilePicSrc} size={"sm"} />
                 </Link>
                 <p className="max-w-[320px]">
                   <Link href={profileLink} className="font-bold">

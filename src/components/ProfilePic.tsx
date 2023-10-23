@@ -5,11 +5,13 @@ export const ProfilePic = ({
   size,
 }: {
   picSrc: string | StaticImageData;
-  size: "small" | "large";
+  size: "sm" | "lg" | "md" | "nav";
 }) => {
   const styles = {
-    small: "h-10 w-10 rounded-full object-cover object-top",
-    large: "h-40 w-40 rounded-full object-cover object-top",
+    nav: "h-7 w-7 rounded-full object-cover object-top",
+    sm: "h-10 w-10 rounded-full object-cover object-top",
+    md: "h-20 w-20 rounded-full object-cover object-top",
+    lg: "h-40 w-40 rounded-full object-cover object-top",
   };
   return (
     <Image

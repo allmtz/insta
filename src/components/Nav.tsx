@@ -1,13 +1,14 @@
 import Image from "next/image";
 import addPost from "../assets/icons/add.svg";
-import profile from "../assets/icons/profile.svg";
-import { MouseEventHandler, useState } from "react";
+import fallbackProfile from "../assets/icons/profile.svg";
+import { useState } from "react";
 import { AddPost } from "./AddPost";
 import { Modal } from "./Modal";
 import Link from "next/link";
 import { useDispatch, useSelector } from "react-redux";
 import { userSelector, switchUser } from "../features/user/userSlice";
 import React from "react";
+import { ProfilePic } from "./ProfilePic";
 
 export const Nav = () => {
   const dispatch = useDispatch();
@@ -28,8 +29,8 @@ export const Nav = () => {
 
   return (
     <>
-      <nav className="flex flex-col gap-4 border p-2">
-        <h1 className="cursor-default">
+      <nav className="flex flex-col  gap-4 border p-2">
+        <h1 className="cursor-default text-2xl">
           <Link href={"/"}>Instaclone</Link>
         </h1>
         <ul className="flex flex-col gap-4">
@@ -37,9 +38,23 @@ export const Nav = () => {
             <Image src={addPost} width={25} height={25} alt=""></Image>
             <span>Create</span>
           </li>
-          <li>
-            <Link href={`/profile/${user.handle}`} className="flex gap-2">
-              <Image src={profile} width={25} height={25} alt=""></Image>
+
+          <li className="flex">
+            <Link
+              href={`/profile/${user.handle}`}
+              className="flex items-center justify-center gap-2"
+            >
+              {user ? (
+                <ProfilePic size="nav" picSrc={user.profilePicSrc}></ProfilePic>
+              ) : (
+                <Image
+                  src={fallbackProfile}
+                  width={25}
+                  height={25}
+                  alt=""
+                ></Image>
+              )}
+
               <div>Profile</div>
             </Link>
           </li>
