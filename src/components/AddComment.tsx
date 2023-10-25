@@ -113,7 +113,7 @@ export const AddComment = ({ post, id }: AddCommentProps) => {
               key={nanoid()}
               onClick={() => onSuggestionClick(u)}
             >
-              <ProfilePic picSrc={u.profilePicSrc} size="small"></ProfilePic>
+              <ProfilePic picSrc={u.profilePicSrc} size="sm"></ProfilePic>
               <p className="">{u.handle}</p>
             </div>
           ))}

@@ -42,7 +42,7 @@ export const List = ({
         className="flex items-center gap-2"
         onClick={closeModal}
       >
-        <ProfilePic picSrc={u.profilePicSrc} size="small" />
+        <ProfilePic picSrc={u.profilePicSrc} size="sm" />
         <p className="mr-auto">{u.handle}</p>
       </Link>
 
