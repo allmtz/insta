@@ -8,7 +8,7 @@ This is an Instagram clone that locally implements many of the features present 
 - Styling: Tailwind
 - State managment: Redux
 - Hosting: NextJS
-- Packages: shadcn, clsx, nanoid, linkify, swrm, tailwind-merge
+- Packages: shadcn, clsx, nanoid, linkify, swr, tailwind-merge
 - Photo source: lorem.picsum
 
 ## Features

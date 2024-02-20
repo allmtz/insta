@@ -15,7 +15,7 @@ export const LikedBy = ({ post }: { post: Post }) => {
 
   const displayUsersWhoLiked = postInteractions.likedBy.map((u) => (
     <div key={nanoid()} className="flex items-center gap-2 p-2">
-      <ProfilePic picSrc={u.profilePicSrc} size="small" />
+      <ProfilePic picSrc={u.profilePicSrc} size="sm" />
       <p className="mr-auto">{u.handle}</p>
       <FollowBtn user={u} />
     </div>
