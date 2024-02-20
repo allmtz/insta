@@ -82,7 +82,7 @@ export const AddPost = ({
         </div>
         <section className="POST-INFO mt-4">
           <div className="flex items-center gap-2 p-2 ">
-            <ProfilePic picSrc={user.profilePicSrc} size={"small"} />
+            <ProfilePic picSrc={user.profilePicSrc} size={"sm"} />
             <p className="font-semibold">{user.handle}</p>
           </div>
           <textarea
